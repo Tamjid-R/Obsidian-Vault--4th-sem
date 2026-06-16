@@ -146,5 +146,5 @@ Whistleblowing is a "last resort." The actual duty here is to address the issue 
 ---
 
 ## Interconnected Concepts
-- **Standard of Care** ([[Ethics Summary Note#Lecture 02: Professionalism and the Social Contract|Lecture 02]]) defines the baseline for **Virtue Ethics** ([[Ethics Summary Note#Lecture 03: Normative Ethical Theories|Lecture 03]]).
+- **Standard of Care** ([[Ethics summary note#Lecture 02: Professionalism and the Social Contract|Lecture 02]]) defines the baseline for **Virtue Ethics** ([[Ethics summary note#Lecture 03: Normative Ethical Theories|Lecture 03]]).
 - **Whistleblowing** is often the result of a failed **Potter Box analysis** where Loyalties to the Public were ignored in favor of Loyalties to the Employer.

@@ -191,13 +191,14 @@ Throughput is determined by the "weakest link" in the network path.
 ## 6. Protocol Layers and Service Models
 - **Layering:** Organizing network protocols into a hierarchy.
 - **Internet Protocol Stack:**
-    1. **[[Application Layer]]**: (HTTP, SMTP, DNS) - Supporting network applications.
+    1. **[[Application Layer]]**: (HTTP, SMTP, DNS) - Providing network services directly to software applications.
     2. **[[Transport Layer]]**: (TCP, UDP) - Process-to-process data transfer.
     3. **[[Network Layer]]**: (IP, routing) - Routing datagrams from source to destination.
     4. **[[Link Layer]]**: (Ethernet, WiFi, PPP) - Data transfer between neighboring network elements.
     5. **[[Physical Layer]]**: (Bits "on the wire") - Moving individual bits within a frame.
-- **ISO/OSI Reference Model:** Adds **Presentation** and **Session** layers.
-- **[[Encapsulation]]:** The process of wrapping data from a higher protocol layer into the payload of a lower protocol layer, adding its own header (and sometimes a trailer).
+- **ISO/OSI (Open Systems Interconnection) Reference Model:** Adds **Presentation (ensures that data sent from the application layer of one system can be read by the application layer of another)** 
+- and **Session(handles authentication and reconnection if a line drops)** layers.
+- **Encapsulation:** The process of wrapping data from a higher protocol layer into the payload of a lower protocol layer, adding its own header (and sometimes a trailer).
     - **Data Units (PDU):** As data moves down the stack, it takes different names: **Message** (Application) $\rightarrow$ **Segment** (Transport) $\rightarrow$ **Datagram** (Network) $\rightarrow$ **Frame** (Link).
     - **Header Information:** Headers typically contain source/destination addresses, error-checking codes (checksums), and protocol-specific control bits.
     - **Decapsulation:** The reverse process at the destination. Each layer strips off its corresponding header, examines the control information, and passes the remaining payload up to the next layer.
