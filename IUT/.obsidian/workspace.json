@@ -272,12 +272,23 @@
               "icon": "calendar-with-checkmark",
               "title": "Calendar"
             }
+          },
+          {
+            "id": "d8e2cf35db34686f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -290,13 +301,19 @@
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
       "templater-obsidian:Templater": false,
-      "terminal:Open terminal": false
+      "terminal:Open terminal": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "53a6ca2c70cbd60f",
   "lastOpenFiles": [
-    "Human/University/3rd Semester/DCN/Chapter 1.pdf",
+    "Pasted image 20260517122810.png",
+    "Pasted image 20260517122839.png",
+    "Welcome.md",
     "Human/University/3rd Semester/DCN/Chapter 1 Summary.md",
+    "Bottleneck Link.md",
+    "GEMINI.md",
+    "Human/University/3rd Semester/DCN/Chapter 1.pdf",
     "Human/University/3rd Semester/DCN/Chapter 2.pdf",
     "Human/University/3rd Semester/DCN/Multiplexing.md",
     "Human/University/3rd Semester/DCN/Data Centre Networks.md",
@@ -316,14 +333,9 @@
     "Human/University/3rd Semester/DCN/Unconfirmed 108059.crdownload",
     "Human/University/3rd Semester/DCN/03. Explanation_of_HTTP.pdf",
     "Human/University/3rd Semester/Algorithm/All Algorithms folder.md",
-    "GEMINI.md",
-    "Welcome.md",
-    "Pasted image 20260517122810.png",
     "Human/University/3rd Semester/DCN/Application Layer.md",
     "Human/University/3rd Semester/Ethics/Ethics summary note.md",
     "Human/University/3rd Semester/DCN/Access Networks.md",
-    "Bottleneck Link.md",
-    "Pasted image 20260517122839.png",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
     "Application Layer.md",
     "Machine",
