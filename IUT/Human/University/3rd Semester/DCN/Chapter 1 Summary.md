@@ -150,6 +150,7 @@ Queueing delay depends on the rate at which traffic arrives at the queue, the tr
 
 #### Queueing delay (model)
 The mathematical model of average queueing delay is often visualized as a curve that stays near zero for low traffic intensity and shoots toward infinity as intensity approaches 1.
+![[Pasted image 20260616214817.png|230]]
 - **Formula for Average Delay:** For many queueing models (like M/M/1), the average queueing delay can be approximated as:
   $$d_{queue} = \frac{L/R}{1 - La/R} \text{ (when } La/R < 1)$$
 - **Non-Linearity:** Unlike transmission delay (which is linear with respect to packet size), queueing delay is non-linear and highly sensitive to small changes in traffic arrival rates when the link is near capacity.
@@ -163,7 +164,7 @@ The mathematical model of average queueing delay is often visualized as a curve 
     - **Instantaneous:** Rate at a given point in time.
     - **Average:** Rate over a longer period.
 - **Packet Loss:** Occurs when a packet arrives at a full buffer.
-- **[[Bottleneck Link]]:** The link in an end-to-end path that limits the end-to-end throughput.
+- **Bottleneck Link:** The link in an end-to-end path that limits the end-to-end throughput.
 
 #### Throughput: Network scenario
 Throughput is determined by the "weakest link" in the network path.
