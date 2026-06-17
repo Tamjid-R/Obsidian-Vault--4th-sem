@@ -104,8 +104,7 @@
               "title": "HTTP"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -292,10 +291,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "04d21370013ccc14",
+  "active": "53a6ca2c70cbd60f",
   "lastOpenFiles": [
-    "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
+    "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
     "Human/University/4th Sem/DCN/Chapter 2.pdf",
     "Human/University/4th Sem/DCN/HTTP.md",

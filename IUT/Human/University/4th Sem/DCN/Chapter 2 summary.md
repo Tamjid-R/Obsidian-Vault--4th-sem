@@ -60,7 +60,8 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 ### 2.2.4 Modern HTTP Evolution
 - **HTTP/2:** Goal is to decrease delay in multi-object requests. Uses **Binary Framing** and **Multiplexing** to solve application-layer Head-of-Line (HOL) blocking.
 - **HTTP/3 (over QUIC):** Uses **UDP** and independent streams to eliminate transport-layer HOL blocking.
-
+- 
+**Head-of-Line (HOL) blocking** is a performance bottleneck that happens when a single delayed or lost item at the front of a line holds up a whole queue of perfectly fine items behind it.
 ---
 
 ## 2.3 Electronic Mail (SMTP, POP3, IMAP)
