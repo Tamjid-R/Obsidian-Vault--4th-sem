@@ -20,6 +20,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 | **Cost** | High server/bandwidth costs | Cost-effective (shared infra) |
 | **Reliability** | Centralized & secure | Faces challenges in reliability |
 | **Performance** | Predictable | Highly scalable |
+| **Utilization** | Server-bound resources | Better resource utilization |
 
 ### 2.1.2 Processes Communicating
 - **Process:** A program running within a host.
@@ -142,14 +143,11 @@ ANS: In a Client-Server model, the distribution time increases linearly as N gro
 Q. What happens if the network connection or client crashes during a stateful transaction (at time $t'$)?
 ANS: In a stateful protocol, a crash can lead to "inconsistent views" between the client and server. For example, the server might think you bought the item, but your client doesn't know it was successful. Stateless protocols avoid this by treating every request as a fresh, independent interaction.
 
+Q. How to map between IP address and name, and vice versa?
+ANS: This is performed through the DNS hierarchy where a client queries various name servers. It maps hostnames to IP addresses using **A records**, and can perform the reverse mapping using **PTR records**.
+
 Q. Why not centralize DNS?
 ANS: A centralized DNS does not scale for the entire planet. It would create a Single Point of Failure, overwhelming Traffic Volume, high latency due to Physical Distance, and impossible Maintenance for billions of records.
-
-Q. What is the difference between recursive and iterative DNS queries?
-ANS: In a recursive query, the host asks the DNS server to find the answer for it, putting the entire burden on the server. In an iterative query, the contacted server replies with the address of another DNS server that might have the answer, and the host (or local DNS server) continues the search itself.
-
-Q. What is Head-of-Line (HOL) blocking in HTTP?
-ANS: HOL blocking occurs when a single large or slow object at the front of a queue prevents subsequent objects from being transmitted. HTTP/2 addresses this at the application layer via multiplexing, while HTTP/3 (QUIC) addresses it at the transport layer by using independent streams over UDP.
 
 ---
 *See also:* [[Application Layer]], [[HTTP]], [[DNS]], [[SMTP]], [[IMAP]], [[Chapter 1 Summary]]
