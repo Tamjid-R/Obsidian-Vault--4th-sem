@@ -100,8 +100,14 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 ## 2.5 Peer-to-Peer Applications (BitTorrent)
 
 ### 2.5.1 Distribution Time Math
-- **$D_{c-s} \ge \max\{NF/u_s, F/d_{min}\}$** (Linear)
-- **$D_{p2p} \ge \max\{F/u_s, F/d_{min}, NF/(u_s + \sum u_i)\}$** (Scalable)
+- $F$: The size of the file being distributed (in bits or bytes).
+- $N$: The number of peer clients who want a copy of the file.
+- $u_s$: The upload capacity (bandwidth) of the original server.
+- $u_i$: The upload capacity of the $i$-th peer client.
+- $d_{min}$: The download capacity of the slowest peer client in the network ($d_{min} = \min\{d_1, d_2, \dots, d_N\}$).
+
+- $$D_{c-s} \ge \max\left\{\frac{NF}{u_s}, \frac{F}{d_{min}}\right\}$$(Linear)
+- $$D_{p2p} \ge \max\left\{\frac{F}{u_s}, \frac{F}{d_{min}}, \frac{NF}{u_s + \sum_{i=1}^{N} u_i}\right\}$$** (Scalable)
 
 ### 2.5.2 BitTorrent Mechanics
 - **Tracker:** Coordinates peers.
