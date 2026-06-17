@@ -44,7 +44,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 ## 2.2 The Web and HTTP
 
 ### 2.2.1 Overview
-- **HTTP (HyperText Transfer Protocol):** Stateless protocol using TCP (Port 80).
+- **HTTP (HyperText Transfer Protocol):** Stateless (the server maintains no information about past client requests) protocol using TCP (Port 80).
 - **Cookies:** Used to maintain state. 4 components: (1) Response header, (2) Request header, (3) Local cookie file, (4) Backend database.
 
 ### 2.2.2 Connections & RTT
