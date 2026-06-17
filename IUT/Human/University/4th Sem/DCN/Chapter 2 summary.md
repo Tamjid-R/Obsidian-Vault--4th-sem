@@ -49,7 +49,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 
 ### 2.2.2 Connections & RTT
 - **RTT (Round-Trip Time):** Time for a small packet to travel from client to server and back.
-- **Non-Persistent HTTP:** 1 TCP connection per object. Total time = $2 \times RTT + \text{transmission time}$.
+- **Non-Persistent HTTP:** 1 TCP connection per object. Total time = $2 \times \text{RTT per object} + \text{transmission time}$.
 - **Persistent HTTP:** Connection stays open.
     - **Pipelining:** Requests sent back-to-back without waiting for ACKs (rarely used).
 
