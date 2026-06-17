@@ -24,6 +24,7 @@ No central server. Each peer can act as both the server and the client (Servents
     *   **Churn:** Peers join and leave the network frequently.
     *   **Trading Strategy (Tit-for-Tat):** A peer sends chunks to the four neighbors who are currently providing it with data at the highest rate (unchoked). Every 30 seconds, it "optimistically unchokes" a random neighbor to explore new high-rate connections.
     *   **Rarest First:** Peers always request the rarest chunks among their neighbors first.
+    
 Q. How much time to distribute a file (size F) from one server to N peers?
 ANS: In a Client-Server model, the distribution time increases linearly as N grows ($D_{c-s} \ge \max\{NF/u_s, F/d_{min}\}$). In P2P, the distribution time is significantly lower because each peer brings their own upload capacity to the network ($D_{p2p} \ge \max\{F/u_s, F/d_{min}, NF/(u_s + \sum u_i)\}$), making it much more scalable for large groups.
 

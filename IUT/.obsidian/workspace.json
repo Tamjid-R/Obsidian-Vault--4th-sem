@@ -77,21 +77,31 @@
             }
           },
           {
-            "id": "1ed4758d3ca9c2a2",
+            "id": "64b788358ec22274",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Human/University/4th Sem/DCN/DNS.md",
+                "file": "Human/University/4th Sem/DCN/HTTP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "DNS"
+              "title": "HTTP"
+            }
+          },
+          {
+            "id": "55558c8ca28696ce",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -278,14 +288,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3ba1396b916e2445",
+  "active": "55558c8ca28696ce",
   "lastOpenFiles": [
-    "Human/University/4th Sem/DCN/DNS.md",
+    "Human/University/4th Sem/DCN/HTTP.md",
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
     "Human/University/4th Sem/DCN/Application Layer.md",
-    "Human/University/4th Sem/DCN/Computer Networking A Top-Down Approach, 8th Edition by James F. Kurose, Keith W. Ross-Pearson.pdf",
-    "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
+    "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Chapter 2.pdf",
+    "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
+    "Human/University/4th Sem/DCN/Computer Networking A Top-Down Approach, 8th Edition by James F. Kurose, Keith W. Ross-Pearson.pdf",
     "Human/University/4th Sem/DCN/Chapter 1.pdf",
     "Encapsulation.md",
     "Bottleneck Link.md",
@@ -297,7 +308,6 @@
     "Human/University/4th Sem/DCN/Multiplexing.md",
     "Human/University/4th Sem/DCN/Data Centre Networks.md",
     "Human/University/4th Sem/DCN/Network Layer.md",
-    "Human/University/4th Sem/DCN/HTTP.md",
     "Human/University/4th Sem/DCN/Transport Layer.md",
     "Human/University/4th Sem/DCN/SMTP.md",
     "Human/University/4th Sem/DCN/Session Layer.md",
@@ -317,7 +327,6 @@
     "Application Layer.md",
     "Machine",
     "Human/University/4th Sem/DCN",
-    "copilot/copilot-custom-prompts/Clip Web Page.md",
-    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md"
+    "copilot/copilot-custom-prompts/Clip Web Page.md"
   ]
 }
