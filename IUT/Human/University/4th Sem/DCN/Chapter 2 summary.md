@@ -58,7 +58,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 - **Conditional GET:** Uses `If-modified-since: <date>` header. Server responds with `304 Not Modified` if data is fresh, saving bandwidth.
 
 ### 2.2.4 Modern HTTP Evolution
-- **HTTP/2:** Uses **Binary Framing** and **Multiplexing** to solve application-layer HOL blocking.
+- **HTTP/2:** Goal is to decrease delay in multi-object requests. Uses **Binary Framing** and **Multiplexing** to solve application-layer Head-of-Line (HOL) blocking.
 - **HTTP/3 (over QUIC):** Uses **UDP** and independent streams to eliminate transport-layer HOL blocking.
 
 ---
