@@ -9,7 +9,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 ### 2.1.1 Network Application Architecture
 - **Client-Server Architecture:** 
     - Always-on host (server) with a fixed, well-known IP address.
-    - Clients request services; they do not communicate directly with each other.
+    - Clients request services to central server ; they do not communicate directly with each other.
 - **P2P Architecture:** 
     - Minimal or no reliance on dedicated servers. 
     - **Self-scalability:** Peers act as both clients and servers, contributing upload capacity as they download.
@@ -24,8 +24,13 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 ### 2.1.2 Processes Communicating
 - **Process:** A program running within a host.
 - **Inter-process Communication:** Processes on the same host communicate using OS-specific rules; on different hosts, they use **Sockets**.
-- **Socket Analogy:** The "Door" between the application process and the transport layer hallway.
 - **Addressing:** Requires **IP Address** (House address) and **Port Number** (Room number). 
+*   **Feynman Term:** Imagine your app is a room. The Socket is the **door**. 
+*   To send a message, you "shove it out the door." 
+*   The **Transport Layer** (the hallway) picks it up and delivers it to the door of the room on the other side of the world.
+*   **The Address:** To find the right door, you need two things:
+    1.  **IP Address:** The address of the house (e.g., `103.82.173.186`).
+    2.  **Port Number:** The specific room number inside the house (e.g., HTTP is Room 80, Mail is Room 25).
 
 ### 2.1.3 Transport Services & Requirements
 - **Data Integrity:** 100% reliability needed for file transfer/web; loss-tolerant for audio/video.
