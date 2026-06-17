@@ -12,7 +12,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
     - Clients request services; they do not communicate directly with each other.
 - **P2P Architecture:** 
     - Minimal or no reliance on dedicated servers. 
-    - **Self-scalability:** Peers act as both clients and servers (**Servents**), contributing upload capacity as they download.
+    - **Self-scalability:** Peers act as both clients and servers, contributing upload capacity as they download.
 - **Comparison Table:**
 
 | Feature | Client-Server | Peer-to-Peer |
