@@ -109,6 +109,12 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
 - $$D_{c-s} \ge \max\left\{\frac{NF}{u_s}, \frac{F}{d_{min}}\right\}$$(Linear)
 - $$D_{p2p} \ge \max\left\{\frac{F}{u_s}, \frac{F}{d_{min}}, \frac{NF}{u_s + \sum_{i=1}^{N} u_i}\right\}$$** (Scalable)
 
+### Why P2P is "Scalable" vs. Client-Server "Linear"
+
+- **Client-Server:** As $N$ increases, the server upload term $\frac{NF}{u_s}$ grows indefinitely. If you double the users, you double the distribution time.
+    
+- **Peer-to-Peer:** As $N$ increases, every new peer adds its own upload capacity ($u_i$) to the denominator of the third term ($\frac{NF}{u_s + \sum u_i}$). Because the aggregate upload capacity grows alongside the number of clients, the total distribution time flattens out and scales exceptionally well, scaling bounded asymptotically rather than spiking linearly.
+
 ### 2.5.2 BitTorrent Mechanics
 - **Tracker:** Coordinates peers.
 - **Tit-for-Tat:** Top 4 uploaders get data (unchoked); 1 random peer optimistically unchoked every 30s.
