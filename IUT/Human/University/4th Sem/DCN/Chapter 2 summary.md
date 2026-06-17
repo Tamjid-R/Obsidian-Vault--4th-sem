@@ -14,6 +14,7 @@ This comprehensive summary is compiled from *Computer Networking: A Top-Down App
     - Minimal or no reliance on dedicated servers. 
     - **Self-scalability:** Peers act as both clients and servers (**Servents**), contributing upload capacity as they download.
 - **Comparison Table:**
+
 | Feature | Client-Server | Peer-to-Peer |
 | :--- | :--- | :--- |
 | **Cost** | High server/bandwidth costs | Cost-effective (shared infra) |
