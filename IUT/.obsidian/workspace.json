@@ -73,10 +73,11 @@
               },
               "pinned": true,
               "icon": "terminal",
-              "title": "Terminal: zsh"
+              "title": "Terminal: ◇  Ready (IUT)"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -263,8 +264,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "53a6ca2c70cbd60f",
+  "active": "3ba1396b916e2445",
   "lastOpenFiles": [
+    "Human/University/4th Sem/DCN/Application Layer.md",
+    "Human/University/4th Sem/DCN/Computer Networking A Top-Down Approach, 8th Edition by James F. Kurose, Keith W. Ross-Pearson.pdf",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
     "Human/University/4th Sem/DCN/Chapter 2.pdf",
     "Human/University/4th Sem/DCN/Chapter 1.pdf",
@@ -293,14 +296,12 @@
     "Human/University/3rd Semester/DCN/Unconfirmed 108059.crdownload",
     "Human/University/4th Sem/DCN/03. Explanation_of_HTTP.pdf",
     "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
-    "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/Ethics/Ethics summary note.md",
     "Human/University/4th Sem/DCN/Access Networks.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
     "Application Layer.md",
     "Machine",
     "Human/University/4th Sem/DCN",
-    "Human/University/4th Sem/Algorithm",
     "copilot/copilot-custom-prompts/Clip Web Page.md",
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md"
   ]
