@@ -14,24 +14,63 @@ ANS: In a stateful protocol, a crash can lead to "inconsistent views" between th
 
 ---
 
-## 2. Persistent vs. Non-Persistent
-*   **Non-Persistent:** Like a one-question-per-phone-call rule. You call, ask for the HTML, and hang up. Then you call again for the first image, and hang up. It's slow because each call ([[TCP]] connection) takes time to set up (**2 RTTs** per object).
-*   **Persistent (HTTP 1.1/2.0):** Like staying on the line. You open one connection and ask for everything you need. It’s much faster.
+### 2. Persistent vs. Non-Persistent
+*   **Non-Persistent:** At most one object sent over a TCP connection; connection then closed. Requires **2 RTTs** per object + transmission time.
+    *   **RTT (Round-Trip Time):** Time for a small packet to travel from client to server and back.
+    *   **Handshake:** 1 RTT for TCP connection setup.
+    *   **Request/Response:** 1 RTT for HTTP request and first few bytes of response.
+*   **Persistent (HTTP 1.1):** Server leaves connection open after sending response; subsequent messages sent over same connection.
+    *   **Pipelining:** (In 1.1) Client can send multiple requests without waiting for responses (rarely used in practice due to HOL blocking).
 
 ---
 
-## 3. The "Library Bookshelf" (Caching)
-*   **Feynman Term:** Instead of driving to the National Library (Origin Server) every time you want a book, you check the **Little Free Library** on your street corner (Web Cache/Proxy Server).
-*   **Why?** It's faster for you and reduces traffic on the main highway.
-*   **Conditional GET:** Your browser asks the server: "I have a copy of this book from Tuesday. Has it been updated?" If not, the server says "304 Not Modified," and you just use your old copy. No data wasted!
+## 3. Web Caching and Proxy Servers
+*   **Goal:** Satisfy client requests without involving the origin server.
+*   **Why?**
+    1.  Reduces response time for client.
+    2.  Reduces traffic on an institution's access link.
+    3.  Reduces load on origin servers.
+*   **Conditional GET:**
+    *   **The Problem:** Cache might have a stale version of the object.
+    *   **The Mechanism:** 
+        1.  Client (or proxy) includes `If-modified-since: <date>` header.
+        2.  Server responds with `304 Not Modified` if the object hasn't changed.
+        3.  No entity body is sent, saving bandwidth.
 
 ---
 
-## 4. Technical Specs & Message Formats
+## 4. Modern HTTP: Evolution to 2 and 3
+
+### 4.1 HTTP/2 (RFC 7540)
+*   **Goal:** Reduce perceived latency by enabling full request/response multiplexing.
+*   **Key Features:**
+    *   **Binary Framing:** Instead of text, messages are broken into binary-encoded frames.
+    *   **Request Prioritization:** Client can assign weights/dependencies to streams.
+    *   **Server Push:** Server can proactively send objects it knows the client will need (e.g., CSS/JS for an HTML page).
+    *   **Multiplexing:** Multiple streams over a single TCP connection.
+*   **HOL Blocking:** HTTP/2 solves HOL blocking at the **Application Layer**, but if a TCP packet is lost, all streams are blocked (Transport Layer HOL blocking).
+
+### 4.2 HTTP/3 (over QUIC)
+*   **Goal:** Address Transport Layer HOL blocking and improve security/mobility.
+*   **QUIC (Quick UDP Internet Connections):** 
+    *   Operates over **UDP**.
+    *   Combines connection setup and security handshake (TLS 1.3) into 1 RTT.
+    *   **Independent Streams:** A lost packet only affects the specific stream it belonged to, eliminating HOL blocking across streams.
+
+---
+
+## 5. Technical Specs & Message Formats
 HTTP operates on a simple client–server request/response model, typically using [[TCP]] as its transport protocol.
 
-### 4.1 Message Syntax
+### 5.1 Cookies: 4 Components
+1.  Cookie header line in the HTTP response message.
+2.  Cookie header line in the next HTTP request message.
+3.  Cookie file kept on the user's end system and managed by the user’s browser.
+4.  A back-end database at the Web site.
+
+### 5.2 Message Syntax
 All messages use **CRLF** (`\r\n`) to denote line endings.
+
 
 #### Request Message Format
 ```http

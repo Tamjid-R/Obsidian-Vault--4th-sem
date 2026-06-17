@@ -16,9 +16,14 @@ Client ----- > Server
 Client ----/
 
 ### B. Peer-to-Peer / P2P (The Community Potluck)
-No central *central server*. Each peer can act as both the server and the client. Each peer can share data to others as well as request data. 
-*   **Self-Scalability:** More peers-> More bandwidth-> More storage-> More upload capacity.  If 100 people want a file, they can share pieces with each other instead of everyone crowding one server.
-*   **Example:** BitTorrent, Skype.
+No central server. Each peer can act as both the server and the client (Servents). Each peer can share data to others as well as request data. 
+*   **Self-Scalability:** More peers -> More upload capacity.
+*   **Example: BitTorrent**
+    *   **Tracker:** A central server that tracks peers participating in a torrent.
+    *   **Chunks:** Files are divided into 256KB chunks.
+    *   **Churn:** Peers join and leave the network frequently.
+    *   **Trading Strategy (Tit-for-Tat):** A peer sends chunks to the four neighbors who are currently providing it with data at the highest rate (unchoked). Every 30 seconds, it "optimistically unchokes" a random neighbor to explore new high-rate connections.
+    *   **Rarest First:** Peers always request the rarest chunks among their neighbors first.
 Q. How much time to distribute a file (size F) from one server to N peers?
 ANS: In a Client-Server model, the distribution time increases linearly as N grows ($D_{c-s} \ge \max\{NF/u_s, F/d_{min}\}$). In P2P, the distribution time is significantly lower because each peer brings their own upload capacity to the network ($D_{p2p} \ge \max\{F/u_s, F/d_{min}, NF/(u_s + \sum u_i)\}$), making it much more scalable for large groups.
 
@@ -118,10 +123,20 @@ Within same host, two processes communicate via **Inter-process Communication**
 *   **IMAP (Internet Mail Access Protocol):** A "pull" protocol used to retrieve, delete, and organize messages stored on a mail server.
 
 ### Modern Video & [[CDN]]s
-*   **DASH (Dynamic, Adaptive Streaming over HTTP):** Server divides video into chunks, each encoded at different rates. Client "intelligently" requests chunks based on current bandwidth.
-*   **CDN (Content Distribution Networks):** Stores copies of content at multiple geographically distributed nodes.
-    *   **Strategies:** "Enter Deep" (many small clusters in access networks) vs. "Bring Home" (fewer large clusters in POPs).
-    *   **Redirection:** Uses DNS CNAME records to redirect client requests to a nearby CDN server.
+
+#### 1. Video Streaming
+*   **CBR (Constant Bit Rate):** Video rate fixed.
+*   **VBR (Variable Bit Rate):** Video rate changes with amount of spatial/temporal coding.
+*   **DASH (Dynamic, Adaptive Streaming over HTTP):** 
+    *   **Manifest File:** Provides URLs for different versions (bitrates) of video chunks.
+    *   **Client Intelligence:** The client periodically measures bandwidth and requests the appropriate chunk version.
+
+#### 2. CDN (Content Distribution Networks)
+*   **Challenge:** Distributing massive amounts of content to millions of users globally.
+*   **Placement Strategies:**
+    *   **Enter Deep:** Push CDN servers deep into access networks (many small clusters).
+    *   **Bring Home:** Place fewer large clusters at IXPs or POPs.
+*   **Operation:** When a client requests a video, the CDN redirects the client to a nearby cluster using **DNS Redirection** (CNAME records).
 
 
 ## 6. Socket Programming (DIY)

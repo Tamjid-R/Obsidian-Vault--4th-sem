@@ -12,22 +12,37 @@ SMTP stands for **Simple Mail Transfer Protocol**.
 
 ---
 
-## 2. IMAP: The "Pull" Protocol
-IMAP stands for **Internet Mail Access Protocol**.
-*   **Feynman Term:** Once your letter arrives at the recipient's post office, it sits in their **mailbox** (on the server). The recipient uses IMAP to **pull** the mail onto their phone or laptop to read it.
-*   **Syncing:** IMAP keeps your folders (Inbox, Sent, Trash) the same across all your devices. If you delete an email on your phone, it disappears on your laptop too.
+## 2. Mail Access Protocols (Pulling Mail)
+Once mail is at the recipient's server, a "pull" protocol is needed to retrieve it.
+
+### A. POP3 (Post Office Protocol - Version 3)
+*   **Mode:** "Download and Delete" (default) or "Download and Keep".
+*   **State:** Stateless across sessions. If you move an email to a folder on one device, it doesn't reflect on others.
+*   **Port:** TCP 110.
+
+### B. IMAP (Internet Mail Access Protocol)
+*   **Mode:** Keeps all messages on the server.
+*   **State:** Stateful. Synchronizes folders and read/unread status across all devices.
+*   **Port:** TCP 143.
+
+### C. HTTP (Webmail)
+*   **Usage:** Gmail, Outlook.com use HTTP for the user-to-server interface. SMTP is still used between mail servers.
 
 ---
 
-## 3. HTTP for Email (Webmail)
-Modern services like Gmail use **HTTP** as the "user-to-server" interface. You use a browser to talk to Gmail's server via HTTP, but behind the scenes, Gmail's server still uses **SMTP** to talk to Outlook's server.
-
----
-
-## 4. Technical Specs (SMTP)
+## 3. Technical Specs (SMTP)
 *   **Transport Protocol:** TCP (Reliability is key!)
 *   **Port Number:** 25
-*   **Three Phases:**
-    1.  **Handshaking:** "Hello, I am server A." "Hello, I am server B. Send your mail."
-    2.  **Transfer:** The actual message is sent.
-    3.  **Closure:** Saying goodbye and hanging up.
+*   **Comparison with HTTP:**
+    *   Both use persistent connections.
+    *   HTTP is a "pull" protocol; SMTP is a "push" protocol.
+    *   SMTP requires 7-bit ASCII encoding for binary data; HTTP does not.
+    *   HTTP encapsulates each object in its own response message; SMTP sends all objects in one message.
+
+---
+
+## 4. SMTP Phases
+1.  **Handshaking:** (HELO/EHLO)
+2.  **Transfer of messages:** (MAIL FROM, RCPT TO, DATA)
+3.  **Closure:** (QUIT)
+
