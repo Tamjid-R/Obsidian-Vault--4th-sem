@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
+                "file": "Human/University/4th Sem/DCN/Application Layer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 1 Summary"
+              "title": "Application Layer"
             }
           },
           {
@@ -27,10 +27,10 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "Human/University/4th Sem/DCN/Chapter 1.pdf"
+                "file": "Human/University/4th Sem/DCN/Chapter 2.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "Chapter 1"
+              "title": "Chapter 2"
             }
           },
           {
@@ -73,49 +73,7 @@
               },
               "pinned": true,
               "icon": "terminal",
-              "title": "Terminal: ◇  Ready (IUT)"
-            }
-          },
-          {
-            "id": "7970544205ef0190",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Human/University/3rd Semester/DCN/Transport Layer.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Transport Layer"
-            }
-          },
-          {
-            "id": "55729c8d5ceeab05",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Human/University/3rd Semester/DCN/Network Layer.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Network Layer"
-            }
-          },
-          {
-            "id": "746c62608629e22c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Human/University/3rd Semester/DCN/HTTP.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "HTTP"
+              "title": "Terminal: zsh"
             }
           }
         ]
@@ -307,16 +265,16 @@
   },
   "active": "53a6ca2c70cbd60f",
   "lastOpenFiles": [
-    "Encapsulation.md",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
-    "Bottleneck Link.md",
+    "Human/University/4th Sem/DCN/Chapter 2.pdf",
     "Human/University/4th Sem/DCN/Chapter 1.pdf",
+    "Encapsulation.md",
+    "Bottleneck Link.md",
     "Pasted image 20260616214817.png",
     "Pasted image 20260517122810.png",
     "Pasted image 20260517122839.png",
     "Welcome.md",
     "GEMINI.md",
-    "Human/University/4th Sem/DCN/Chapter 2.pdf",
     "Human/University/4th Sem/DCN/Multiplexing.md",
     "Human/University/4th Sem/DCN/Data Centre Networks.md",
     "Human/University/4th Sem/DCN/Network Layer.md",
@@ -344,7 +302,6 @@
     "Human/University/4th Sem/DCN",
     "Human/University/4th Sem/Algorithm",
     "copilot/copilot-custom-prompts/Clip Web Page.md",
-    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
-    "copilot/copilot-custom-prompts/Rewrite as tweet.md"
+    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md"
   ]
 }
