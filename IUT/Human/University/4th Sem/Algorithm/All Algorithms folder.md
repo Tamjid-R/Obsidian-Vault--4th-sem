@@ -21,6 +21,13 @@ This file serves as a central repository for all algorithms studied in the 3rd S
 | **Counting Sort**   | $O(N + K)$         | $O(N + K)$         | $O(N + K)$         | $O(N + K)$       | Integer arrays with small range of values ($K$).         | "Non-comparison", "Prefix sum array", "Frequency bucket".                    |
 | **Radix Sort**      | $O(D(N + K))$      | $O(D(N + K))$      | $O(D(N + K))$      | $O(N + K)$       | Integer keys with fixed length / digit values.           | "LSD digit sorting", "Digit counting sort helper".                           |
 
+### Complexity Notation Key:
+* **$V$**: Number of vertices (nodes) in the graph.
+* **$E$**: Number of edges (connections) in the graph.
+* **$N$**: Number of elements (size) of the input array.
+* **$K$**: Range of the input values (difference between maximum and minimum value) in non-comparison sorting.
+* **$D$**: Number of digits (or length of keys) of the maximum element in radix sort.
+
 ---
 
 ## Minimum Spanning Tree (MST)
