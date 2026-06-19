@@ -6,11 +6,20 @@ This file serves as a central repository for all algorithms studied in the 3rd S
 
 | Algorithm Name     | Best Case Time    | Average Case Time | Worst Case Time   | Space Complexity | Use Case                                               | Keywords                                                                     |
 | :----------------- | :---------------- | :---------------- | :---------------- | :--------------- | :----------------------------------------------------- | :--------------------------------------------------------------------------- |
-| **Prim's**         | $O(E \log V)$     | $O((V+E) \log V)$ | $O((V+E) \log V)$ | $O(V + E)$       | Find MST in dense graphs; grows tree from a node.      | "Minimum weight spanning tree", "Priority queue", "Connected nodes".         |
-| **Dijkstra's**     | $O(V + E \log V)$ | $O(E \log V)$     | $O(E \log V)$     | $O(V + E)$       | Single-source shortest path with non-negative weights. | "Shortest path", "Non-negative weights", "Quickest route".                   |
-| **Bellman-Ford**   | $O(E)$            | $O(VE)$           | $O(VE)$           | $O(V)$           | Single-source shortest path with negative weights.     | "Negative weights", "Negative cycle detection", "Relax all edges".           |
-| **Floyd-Warshall** | $O(V^3)$          | $O(V^3)$          | $O(V^3)$          | $O(V^2)$         | All-pairs shortest paths in small to medium graphs.    | "All pairs shortest path", "Intermediate vertices", "Matrix representation". |
-| **Kruskal's**      | $O(E \log E)$     | $O(E \log E)$     | $O(E \log E)$     | $O(V + E)$       | Find MST in sparse graphs; sorts edges and adds them.  | "Minimum weight spanning tree", "Edge list", "DSU", "Sort edges".            |
+| **Prim's**          | $O((V+E) \log V)$  | $O((V+E) \log V)$  | $O((V+E) \log V)$  | $O(V + E)$       | Find MST in dense graphs; grows tree from a node.        | "Minimum weight spanning tree", "Priority queue", "Connected nodes".         |
+| **Dijkstra's**      | $O(V + E \log V)$  | $O(E \log V)$      | $O(E \log V)$      | $O(V + E)$       | Single-source shortest path with non-negative weights.   | "Shortest path", "Non-negative weights", "Quickest route".                   |
+| **Bellman-Ford**    | $O(E)$             | $O(VE)$            | $O(VE)$            | $O(V)$           | Single-source shortest path with negative weights.       | "Negative weights", "Negative cycle detection", "Relax all edges".           |
+| **Floyd-Warshall**  | $O(V^3)$           | $O(V^3)$           | $O(V^3)$           | $O(V^2)$         | All-pairs shortest paths in small to medium graphs.      | "All pairs shortest path", "Intermediate vertices", "Matrix representation". |
+| **Kruskal's**       | $O(E \log E)$      | $O(E \log E)$      | $O(E \log E)$      | $O(V + E)$       | Find MST in sparse graphs; sorts edges and adds them.    | "Minimum weight spanning tree", "Edge list", "DSU", "Sort edges".            |
+| **BFS**             | $O(V + E)$         | $O(V + E)$         | $O(V + E)$         | $O(V)$           | Level-order search, shortest path on unweighted graphs.  | "Queue", "Level-order traversal", "Frontier search", "Breadth first".        |
+| **DFS**             | $O(V + E)$         | $O(V + E)$         | $O(V + E)$         | $O(V)$           | Cycle detection, pathfinding, topological sorting.       | "Stack", "Backtracking", "Depth search", "DFS tree".                         |
+| **Topological Sort**| $O(V + E)$         | $O(V + E)$         | $O(V + E)$         | $O(V)$           | Dependency resolution, task scheduling.                  | "DAG", "Kahn's algorithm", "Indegree", "Prerequisites".                      |
+| **Bubble Sort**     | $O(N)$             | $O(N^2)$           | $O(N^2)$           | $O(1)$           | Small lists, checking if list is already sorted.         | "Adjacent swaps", "Early exit flag", "Bubble pass".                          |
+| **Selection Sort**  | $O(N^2)$           | $O(N^2)$           | $O(N^2)$           | $O(1)$           | Minimizing swaps / writes in memory constraints.         | "Find minimum index", "Selection swaps".                                     |
+| **Insertion Sort**  | $O(N)$             | $O(N^2)$           | $O(N^2)$           | $O(1)$           | Nearly sorted lists, sorting incoming stream online.     | "Card sorting analogy", "Sorted sublist insertion".                          |
+| **Merge Sort**      | $O(N \log N)$      | $O(N \log N)$      | $O(N \log N)$      | $O(N)$           | Stable sorting, large arrays, linked list sorting.       | "Divide and conquer", "Merge recursion", "Two-way merge".                    |
+| **Counting Sort**   | $O(N + K)$         | $O(N + K)$         | $O(N + K)$         | $O(N + K)$       | Integer arrays with small range of values ($K$).         | "Non-comparison", "Prefix sum array", "Frequency bucket".                    |
+| **Radix Sort**      | $O(D(N + K))$      | $O(D(N + K))$      | $O(D(N + K))$      | $O(N + K)$       | Integer keys with fixed length / digit values.           | "LSD digit sorting", "Digit counting sort helper".                           |
 
 ---
 
@@ -95,9 +104,9 @@ PRIM(G, r):
     - Main Loop: $V$ iterations.
     - Priority Queue operations: $O(E \log V)$ or $O(E \log E)$.
 - **Overall Complexity:**
-    - **Best Case:** $O(E \log V)$.
-    - **Average Case:** $O(E \log V)$.
-    - **Worst Case:** $O(E \log V)$.
+    - **Best Case:** $O((V + E) \log V)$
+    - **Average Case:** $O((V + E) \log V)$
+    - **Worst Case:** $O((V + E) \log V)$
 - **Space Complexity:** $O(V + E)$ for adjacency list and priority queue.
 
 #### Example
@@ -395,7 +404,21 @@ Result: Shortest paths found in $V-1$ passes.
 
 ---
 
-## Floyd-Warshall Algorithm
+## All-Pairs Shortest Path (APSP)
+
+The All-Pairs Shortest Path (APSP) problem aims to find the shortest paths between all pairs of vertices $u, v \in V$ in a graph.
+
+### Summary of APSP Approaches
+
+| Approach | Negative Edges? | Complexity (Sparse) | Complexity (Dense) | Best Suited For |
+| :--- | :--- | :--- | :--- | :--- |
+| **$V \times$ Dijkstra** | No | $O(VE + V^2 \log V)$ | $O(V^3)$ | Sparse graphs with no negative edges |
+| **$V \times$ Bellman-Ford** | Yes | $O(V^2E)$ | $O(V^4)$ | Never preferred (highly inefficient) |
+| **Floyd-Warshall** | Yes (no negative cycles) | $O(V^3)$ | $O(V^3)$ | Small/dense graphs with negative edges |
+
+---
+
+### 1. Floyd-Warshall Algorithm
 
 Floyd-Warshall is an all-pairs shortest path algorithm. It finds the shortest distances between every pair of vertices in a weighted graph (can have negative weights, but no negative cycles).
 
@@ -488,6 +511,746 @@ INF 0   3
 ```
 - $k=2$ (Intermediate vertex 3): $dist[2][1] = \min(\text{INF}, 3+1) = 4$. $dist[1][1] = \min(0, 8+1) = 0$.
 Final shortest path matrix found.
+
+
+
+## Graph Traversal & Ordering Algorithms
+
+### 1. Breadth-First Search (BFS)
+
+BFS explores nodes layer-by-layer starting from a source vertex. It is ideal for finding the shortest path in unweighted graphs.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+void bfs(int start, int n, vector<vector<int>>& adj) {
+    vector<bool> visited(n, false);
+    queue<int> q;
+
+    visited[start] = true;
+    q.push(start);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        cout << u << " ";
+
+        for (int v : adj[u]) {
+            if (!visited[v]) {
+                visited[v] = true;
+                q.push(v);
+            }
+        }
+    }
+    cout << endl;
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Queue & Visited Setup:** Initialize a queue `q` to store node frontiers and a boolean vector `visited` to prevent duplicate visits.
+2. **Push Start:** Mark the start node as visited and push it into the queue.
+3. **Dequeue & Print:** Pop the front element `u` and process/print it.
+4. **Queue Neighbors:** For each unvisited neighbor `v` of `u`, mark `v` as visited and enqueue it.
+5. **Level-Order:** This ensures nodes at distance $d$ are processed before nodes at distance $d+1$.
+
+#### Pseudocode
+```text
+BFS(G, s):
+    for each vertex u in G.V - {s}:
+        u.color = WHITE
+        u.d = INF
+        u.p = NIL
+    s.color = GRAY
+    s.d = 0
+    s.p = NIL
+    Q = empty queue
+    ENQUEUE(Q, s)
+    while Q is not empty:
+        u = DEQUEUE(Q)
+        for each v in G.adj[u]:
+            if v.color == WHITE:
+                v.color = GRAY
+                v.d = u.d + 1
+                v.p = u
+                ENQUEUE(Q, v)
+        u.color = BLACK
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** BFS is iterative due to the FIFO queue. A recursive alternative passes the queue to recursive steps: `bfsRecursive(adj, q, visited)`.
+- **Recursion Frequency:** Will trigger $V$ calls to completely traverse the graph vertices.
+- **Recursive Alternatives for Loops:**
+  - `while (!q.empty())`: Replaced by `processQueue(q) { if(!q.empty()) { ... processQueue(q); } }`.
+  - `for (int v : adj[u])`: Replaced by a helper function `visitNeighbors(u, index)`.
+
+#### Complexity Analysis
+- **Loops:**
+  - Queue loop: Runs $V$ times (once per vertex).
+  - Neighbor exploration loop: Runs $E$ times (or $2E$ for undirected graph) total across all dequeue steps.
+- **Overall Complexity:**
+  - **Best Case:** $O(V + E)$
+  - **Average Case:** $O(V + E)$
+  - **Worst Case:** $O(V + E)$
+- **Space Complexity:** $O(V)$ for queue and visited array.
+
+---
+
+### 2. Depth-First Search (DFS)
+
+DFS explores as deep as possible along each branch before backtracking. It is useful for connectivity and topological sorting.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void dfsRecursive(int u, vector<vector<int>>& adj, vector<bool>& visited) {
+    visited[u] = true;
+    cout << u << " ";
+
+    for (int v : adj[u]) {
+        if (!visited[v]) {
+            dfsRecursive(v, adj, visited);
+        }
+    }
+}
+
+void dfs(int n, vector<vector<int>>& adj) {
+    vector<bool> visited(n, false);
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            dfsRecursive(i, adj, visited);
+        }
+    }
+    cout << endl;
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Recursive Visit:** Mark node `u` as visited and print it.
+2. **Deep Descent:** Loop through neighbors `v` of `u`. If a neighbor is unvisited, immediately recurse by calling `dfsRecursive(v, ...)`.
+3. **Graph Scanning:** The main `dfs` loop scans all indices to handle disconnected graph structures.
+4. **Backtracking:** Once all neighbors of a node are explored, the recursion returns (backtracks) to the caller.
+
+#### Pseudocode
+```text
+DFS(G):
+    for each vertex u in G.V:
+        u.color = WHITE
+        u.p = NIL
+    time = 0
+    for each vertex u in G.V:
+        if u.color == WHITE:
+            DFS-VISIT(G, u)
+
+DFS-VISIT(G, u):
+    time = time + 1
+    u.d = time
+    u.color = GRAY
+    for each v in G.adj[u]:
+        if v.color == WHITE:
+            v.p = u
+            DFS-VISIT(G, v)
+    u.color = BLACK
+    time = time + 1
+    u.f = time
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** `dfsRecursive(v, ...)` is called recursively from inside the adjacency list traversal.
+- **Recursion Frequency:** Recursion occurs $V$ times (once per vertex).
+- **Recursive Alternatives for Loops:**
+  - `for (int i = 0; i < n; i++)`: Replaced by `runDFS(index) { if (index < n) { if(!visited[index]) dfsRecursive(index); runDFS(index+1); } }`.
+  - `for (int v : adj[u])`: Replaced by `exploreNeighbors(u, index)`.
+
+#### Complexity Analysis
+- **Loops:**
+  - Component search loop: Runs $V$ times.
+  - Neighbor traversal loop: Runs $E$ times in total.
+- **Overall Complexity:**
+  - **Best Case:** $O(V + E)$
+  - **Average Case:** $O(V + E)$
+  - **Worst Case:** $O(V + E)$
+- **Space Complexity:** $O(V)$ auxiliary space for recursive call stack.
+
+---
+
+### 3. Topological Sorting
+
+Topological Sort finds a linear ordering of vertices in a Directed Acyclic Graph (DAG) such that for every directed edge $u \to v$, $u$ comes before $v$.
+
+#### C++ Implementation (Kahn's Algorithm)
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+vector<int> topologicalSort(int n, vector<vector<int>>& adj) {
+    vector<int> inDegree(n, 0);
+    for (int u = 0; u < n; u++) {
+        for (int v : adj[u]) {
+            inDegree[v]++;
+        }
+    }
+
+    queue<int> q;
+    for (int i = 0; i < n; i++) {
+        if (inDegree[i] == 0) {
+            q.push(i);
+        }
+    }
+
+    vector<int> order;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        order.push_back(u);
+
+        for (int v : adj[u]) {
+            inDegree[v]--;
+            if (inDegree[v] == 0) {
+                q.push(v);
+            }
+        }
+    }
+
+    if (order.size() != n) {
+        return {}; // Cycle detected
+    }
+    return order;
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **In-Degree Calculation:** Count incoming edges for every vertex.
+2. **Initial Frontier:** Insert all vertices with in-degree 0 into the queue.
+3. **Extract & Append:** Pop `u` from queue and append to order list.
+4. **Relax Indegrees:** For each neighbor `v` of `u`, decrement its `inDegree`. If it hits 0, add it to the queue.
+5. **Cycle Detection Check:** If the list size is less than $N$, it means a cycle exists, making topological order impossible.
+
+#### Pseudocode
+```text
+TOPOLOGICAL-SORT-KAHN(G):
+    in_degree = array of size V filled with 0
+    for each vertex u in G.V:
+        for each v in G.adj[u]:
+            in_degree[v] = in_degree[v] + 1
+    Q = empty queue
+    for i = 0 to V - 1:
+        if in_degree[i] == 0:
+            ENQUEUE(Q, i)
+    L = empty list
+    while Q is not empty:
+        u = DEQUEUE(Q)
+        append u to L
+        for each v in G.adj[u]:
+            in_degree[v] = in_degree[v] - 1
+            if in_degree[v] == 0:
+                ENQUEUE(Q, v)
+    if L.size != V:
+        return error "Graph contains cycle"
+    return L
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** Kahn's is iterative. A DFS-based version utilizes post-order recursion to build ordering.
+- **Recursion Frequency:** In DFS-based topological sort, recursion runs $V$ times.
+- **Recursive Alternatives for Loops:**
+  - `while (!q.empty())`: Replaced by recursive queue draining.
+  - Neighbor updates: Replaced by recursion over neighbor index.
+
+#### Complexity Analysis
+- **Loops:**
+  - Indegree setup loop: $O(V + E)$
+  - Main loop: $V$ iterations.
+  - Decrement loop: $E$ total.
+- **Overall Complexity:**
+  - **Best Case:** $O(V + E)$
+  - **Average Case:** $O(V + E)$
+  - **Worst Case:** $O(V + E)$
+- **Space Complexity:** $O(V)$ for indegrees array and queue.
+
+---
+
+## Sorting Algorithms
+
+### Sorting Concepts: In-place Sort vs. Stable Sort
+
+* **In-place Sort:** A sorting algorithm is **in-place** if it does not require auxiliary memory that scales with the size of the input. It uses a constant amount of extra memory space ($O(1)$) to perform swaps directly inside the input array.
+  - *In-place:* Bubble Sort, Selection Sort, Insertion Sort, Quick Sort, Heap Sort.
+  - *Out-of-place:* Merge Sort (needs $O(N)$ memory), Counting Sort (needs $O(N+K)$ memory).
+* **Stable Sort:** A sorting algorithm is **stable** if it preserves the relative original sequence of elements that possess equal keys/values. If element $X$ appears before element $Y$ in the input, and $X = Y$, a stable sort guarantees $X$ will remain before $Y$ in the sorted output.
+  - *Stable:* Bubble Sort, Insertion Sort, Merge Sort, Counting Sort.
+  - *Unstable:* Selection Sort, Quick Sort, Heap Sort.
+
+---
+
+### 1. Bubble Sort
+
+Bubble Sort works by repeatedly swapping adjacent elements if they are in the wrong order, "bubbling" the largest element to the end.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped) break; // Early exit optimization
+    }
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Passes Loop:** The outer loop executes $N-1$ times.
+2. **Scan & Compare:** The inner loop compares adjacent items.
+3. **Swap Element:** If `arr[j] > arr[j+1]`, they swap.
+4. **Exit Check:** If no swaps happen during a pass, the array is sorted; break immediately.
+
+#### Pseudocode
+```text
+BUBBLE-SORT(A):
+    n = A.length
+    for i = 0 to n - 2:
+        swapped = false
+        for j = 0 to n - i - 2:
+            if A[j] > A[j+1]:
+                swap A[j] with A[j+1]
+                swapped = true
+        if swapped == false:
+            break
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** A recursive version `bubbleSortRec(arr, n)` swaps elements on a pass and calls itself with `n-1`.
+- **Recursion Frequency:** Runs $N$ times.
+- **Recursive Alternatives for Loops:**
+  - Outer loop: Replaced by recursion decrementing boundaries.
+  - Inner loop: Replaced by recursive traversal `swapPass(index)`.
+
+#### Complexity Analysis
+- **Loops:**
+  - Outer loop: Runs $N-1$ times.
+  - Inner loop: Runs $N-i-1$ times.
+- **Overall Complexity:**
+  - **Best Case:** $O(N)$ (Already sorted list).
+  - **Average Case:** $O(N^2)$
+  - **Worst Case:** $O(N^2)$ (Reverse sorted list).
+- **Space Complexity:** $O(1)$ auxiliary space.
+
+---
+
+### 2. Selection Sort
+
+Selection Sort divides the array into sorted and unsorted regions, repeatedly finding the minimum element from the unsorted region and putting it at the beginning.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            swap(arr[i], arr[minIndex]);
+        }
+    }
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Starting Boundary:** The outer loop selects position `i` where the next minimum element belongs.
+2. **Scan Unsorted:** The inner loop finds the index of the minimum element in `arr[i...n-1]`.
+3. **Swap Minimum:** The minimum element is swapped with the element at index `i`.
+4. **Static Performance:** Always performs all comparisons regardless of array state.
+
+#### Pseudocode
+```text
+SELECTION-SORT(A):
+    n = A.length
+    for i = 0 to n - 2:
+        minIndex = i
+        for j = i + 1 to n - 1:
+            if A[j] < A[minIndex]:
+                minIndex = j
+        if minIndex != i:
+            swap A[i] with A[minIndex]
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** `selectionSortRec(arr, index, n)` finds minimum, swaps it, and calls itself with `index+1`.
+- **Recursion Frequency:** Runs $N-1$ times.
+- **Recursive Alternatives for Loops:**
+  - Outer loop: Replaced by incrementing index recursion.
+  - Inner loop: Replaced by recursive minimum lookup.
+
+#### Complexity Analysis
+- **Loops:**
+  - Outer loop: Runs $N-1$ times.
+  - Inner loop: Runs $N - i - 1$ times.
+- **Overall Complexity:**
+  - **Best Case:** $O(N^2)$
+  - **Average Case:** $O(N^2)$
+  - **Worst Case:** $O(N^2)$
+- **Space Complexity:** $O(1)$ auxiliary space.
+
+---
+
+### 3. Insertion Sort
+
+Insertion Sort builds the final sorted array one item at a time, moving elements that are larger than the current "key" to the right.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Choose Key:** The outer loop chooses `arr[i]` as the key to insert.
+2. **Shifting Elements:** The inner loop compares `key` with sorted elements on its left and shifts them right.
+3. **Insertion Point:** Insert the key into its correct sorted location.
+4. **Adaptive sorting:** Performs highly on nearly sorted arrays.
+
+#### Pseudocode
+```text
+INSERTION-SORT(A):
+    n = A.length
+    for i = 1 to n - 1:
+        key = A[i]
+        j = i - 1
+        while j >= 0 and A[j] > key:
+            A[j+1] = A[j]
+            j = j - 1
+        A[j+1] = key
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** `insertionSortRec(arr, n)` recursively sorts $n-1$ elements and inserts the last.
+- **Recursion Frequency:** Runs $N$ times.
+- **Recursive Alternatives for Loops:**
+  - Outer loop: Replaced by recursive function calls.
+  - Inner loop: Replaced by recursive shifts.
+
+#### Complexity Analysis
+- **Loops:**
+  - Outer loop: Runs $N-1$ times.
+  - Inner loop: Runs up to $i$ times.
+- **Overall Complexity:**
+  - **Best Case:** $O(N)$ (Already sorted inputs).
+  - **Average Case:** $O(N^2)$
+  - **Worst Case:** $O(N^2)$ (Reverse sorted inputs).
+- **Space Complexity:** $O(1)$ auxiliary space.
+
+---
+
+### 4. Merge Sort
+
+Merge Sort is a stable, divide-and-conquer algorithm that splits the array in halves, recursively sorts them, and merges them.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void merge(vector<int>& arr, int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    vector<int> L(n1), R(n2);
+
+    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++; k++;
+    }
+    while (j < n2) {
+        arr[k] = R[j];
+        j++; k++;
+    }
+}
+
+void mergeSort(vector<int>& arr, int l, int r) {
+    if (l >= r) return;
+    int m = l + (r - l) / 2;
+    mergeSort(arr, l, m);
+    mergeSort(arr, m + 1, r);
+    merge(arr, l, m, r);
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Divide range:** Midpoint `m` divides range.
+2. **Recursive Divide:** Recursively call `mergeSort` on left and right subranges.
+3. **Merge Routine:** Copy values to temporary buffers `L` and `R`.
+4. **Pointer Comparison:** Iteratively insert smallest available values back to `arr` stably.
+
+#### Pseudocode
+```text
+MERGE-SORT(A, p, r):
+    if p < r:
+        q = floor((p + r) / 2)
+        MERGE-SORT(A, p, q)
+        MERGE-SORT(A, q + 1, r)
+        MERGE(A, p, q, r)
+
+MERGE(A, p, q, r):
+    n1 = q - p + 1
+    n2 = r - q
+    let L[0..n1-1] and R[0..n2-1] be new arrays
+    for i = 0 to n1 - 1:
+        L[i] = A[p + i]
+    for j = 0 to n2 - 1:
+        R[j] = A[q + 1 + j]
+    i = 0, j = 0, k = p
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            A[k] = L[i]
+            i = i + 1
+        else:
+            A[k] = R[j]
+            j = j + 1
+        k = k + 1
+    while i < n1:
+        A[k] = L[i]
+        i = i + 1
+        k = k + 1
+    while j < n2:
+        A[k] = R[j]
+        j = j + 1
+        k = k + 1
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** `mergeSort(arr, l, m)` and `mergeSort(arr, m+1, r)`.
+- **Recursion Frequency:** Calls occur $2N-1$ times.
+- **Recursive Alternatives for Loops:**
+  - Copy loops: Replaced by recursion indexing.
+  - Merge loops: Replaced by recursive comparison pointers.
+
+#### Complexity Analysis
+- **Loops:**
+  - Array copy loop: $O(N)$
+  - Array merge pointer updates: $O(N)$
+- **Overall Complexity:**
+  - **Best Case:** $O(N \log N)$
+  - **Average Case:** $O(N \log N)$
+  - **Worst Case:** $O(N \log N)$
+- **Space Complexity:** $O(N)$ auxiliary space for buffers.
+
+---
+
+### 5. Counting Sort
+
+Counting Sort is a non-comparison sorting algorithm that counts the frequency of each element and computes prefix sums to place elements directly in their sorted output indices.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void countingSort(vector<int>& arr) {
+    if (arr.empty()) return;
+    int maxVal = *max_element(arr.begin(), arr.end());
+    int minVal = *min_element(arr.begin(), arr.end());
+    int range = maxVal - minVal + 1;
+
+    vector<int> count(range, 0);
+    vector<int> output(arr.size());
+
+    for (int x : arr) {
+        count[x - minVal]++;
+    }
+
+    for (int i = 1; i < range; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = arr.size() - 1; i >= 0; i--) {
+        output[count[arr[i] - minVal] - 1] = arr[i];
+        count[arr[i] - minVal]--;
+    }
+
+    arr = output;
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Find Bounds:** Determine the range size using `min` and `max`.
+2. **Frequency Tally:** Populate the frequency counts array.
+3. **Cumulative Sums:** Convert counts to cumulative indices (prefix sums).
+4. **Stable Reassembly:** Scan input right-to-left. Match element values to their target counts, place them in the output array, and decrement counts.
+
+#### Pseudocode
+```text
+COUNTING-SORT(A, B, k):
+    let C[0..k] be a new array
+    for i = 0 to k:
+        C[i] = 0
+    for j = 0 to A.length - 1:
+        C[A[j]] = C[A[j]] + 1
+    for i = 1 to k:
+        C[i] = C[i] + C[i - 1]
+    for j = A.length - 1 downto 0:
+        B[C[A[j]] - 1] = A[j]
+        C[A[j]] = C[A[j]] - 1
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** Counting sort is inherently iterative. Loop logic can be replaced by tail recursion routines if needed.
+- **Recursion Frequency:** 0 calls in standard versions.
+- **Recursive Alternatives for Loops:**
+  - Count: Replaced by recursion indexing.
+  - Prefix Sum: Replaced by recursive addition steps.
+
+#### Complexity Analysis
+- **Loops:**
+  - Count frequency: Runs $N$ times.
+  - Prefix sum: Runs $K$ times.
+  - Build output: Runs $N$ times.
+- **Overall Complexity:**
+  - **Best Case:** $O(N + K)$
+  - **Average Case:** $O(N + K)$
+  - **Worst Case:** $O(N + K)$
+- **Space Complexity:** $O(N + K)$ space for count and output arrays.
+
+---
+
+### 6. Radix Sort
+
+Radix Sort sorts elements digit-by-digit from the least significant digit (LSD) to the most significant digit (MSD) using a stable sort (like Counting Sort) as a subroutine.
+
+#### C++ Implementation
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void countingSortForRadix(vector<int>& arr, int exp) {
+    int n = arr.size();
+    vector<int> output(n);
+    vector<int> count(10, 0);
+
+    for (int i = 0; i < n; i++) {
+        count[(arr[i] / exp) % 10]++;
+    }
+
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+        int digit = (arr[i] / exp) % 10;
+        output[count[digit] - 1] = arr[i];
+        count[digit]--;
+    }
+
+    arr = output;
+}
+
+void radixSort(vector<int>& arr) {
+    if (arr.empty()) return;
+    int maxVal = *max_element(arr.begin(), arr.end());
+
+    for (int exp = 1; maxVal / exp > 0; exp *= 10) {
+        countingSortForRadix(arr, exp);
+    }
+}
+```
+
+#### Step-by-Step Code Walkthrough
+1. **Find maximum value:** This dictates the number of digits.
+2. **Iterate Exponent:** Multiply `exp` by 10 in each pass to isolate digits (units, tens, hundreds...).
+3. **Subroutine Sort:** Invoke Counting Sort matching on the isolated digit values.
+4. **Stable Progression:** The stable subroutine preserves prior sorts.
+
+#### Pseudocode
+```text
+RADIX-SORT(A, d):
+    for i = 1 to d:
+        use a stable sort to sort array A on digit i
+```
+
+#### Recursive Analysis
+- **Recursive Calls:** The main loop over digits can be replaced by `radixSortRec(arr, exp, maxVal)` which calls itself with `exp * 10`.
+- **Recursion Frequency:** Runs $D$ times where $D$ is the number of digits in the maximum value.
+- **Recursive Alternatives for Loops:**
+  - Digits loop: Replaced by digit-by-digit recursive step-down.
+
+#### Complexity Analysis
+- **Loops:**
+  - Digit loop: Runs $D$ times.
+  - Subroutine sort: $O(N + K)$ per iteration (where $K = 10$).
+- **Overall Complexity:**
+  - **Best Case:** $O(D \cdot (N + K))$
+  - **Average Case:** $O(D \cdot (N + K))$
+  - **Worst Case:** $O(D \cdot (N + K))$
+- **Space Complexity:** $O(N + K)$ space for counting sort helper arrays.
 
 ---
 
