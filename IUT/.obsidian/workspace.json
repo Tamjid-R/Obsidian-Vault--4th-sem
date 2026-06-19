@@ -4,76 +4,64 @@
     "type": "split",
     "children": [
       {
-        "id": "48fbe855f07f450c",
-        "type": "split",
+        "id": "691b82a061f530dc",
+        "type": "tabs",
         "children": [
           {
-            "id": "691b82a061f530dc",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "1103584f040cb875",
-                "type": "leaf",
-                "state": {
-                  "type": "empty",
-                  "state": {},
-                  "icon": "lucide-file",
-                  "title": "New tab"
-                }
-              }
-            ]
+            "id": "1103584f040cb875",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
           },
           {
-            "id": "4ad82bf003b7ab2b",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "787485085a6c642e",
-                "type": "leaf",
-                "pinned": true,
-                "state": {
-                  "type": "terminal:terminal",
-                  "state": {
-                    "terminal:terminal": {
-                      "cwd": "/Users/apple/Obsidian/IUT",
-                      "focus": false,
-                      "profile": {
-                        "args": [
-                          "--login"
-                        ],
-                        "executable": "/bin/zsh",
-                        "followTheme": true,
-                        "name": "",
-                        "platforms": {
-                          "darwin": true
-                        },
-                        "pythonExecutable": "python3",
-                        "restoreHistory": false,
-                        "rightClickAction": "copyPaste",
-                        "successExitCodes": [
-                          "0",
-                          "SIGINT",
-                          "SIGTERM"
-                        ],
-                        "terminalOptions": {
-                          "documentOverride": null
-                        },
-                        "type": "integrated",
-                        "useWin32Conhost": true
-                      },
-                      "profileSourceId": "darwinIntegratedDefault",
-                      "serial": null
-                    }
+            "id": "787485085a6c642e",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "terminal:terminal",
+              "state": {
+                "terminal:terminal": {
+                  "cwd": "/Users/apple/Obsidian/IUT",
+                  "focus": false,
+                  "profile": {
+                    "args": [
+                      "--login"
+                    ],
+                    "executable": "/bin/zsh",
+                    "followTheme": true,
+                    "name": "",
+                    "platforms": {
+                      "darwin": true
+                    },
+                    "pythonExecutable": "python3",
+                    "restoreHistory": false,
+                    "rightClickAction": "copyPaste",
+                    "successExitCodes": [
+                      "0",
+                      "SIGINT",
+                      "SIGTERM"
+                    ],
+                    "terminalOptions": {
+                      "documentOverride": null
+                    },
+                    "type": "integrated",
+                    "useWin32Conhost": true
                   },
-                  "pinned": true,
-                  "icon": "terminal",
-                  "title": "Terminal: zsh"
+                  "profileSourceId": "darwinIntegratedDefault",
+                  "serial": null
                 }
-              }
-            ]
+              },
+              "pinned": true,
+              "icon": "terminal",
+              "title": "Terminal: zsh"
+            }
           }
         ],
-        "direction": "horizontal"
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
