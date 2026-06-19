@@ -11,10 +11,14 @@
             "id": "1103584f040cb875",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Dynamic programming"
             }
           },
           {
@@ -60,8 +64,7 @@
               "title": "Terminal: zsh"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -118,7 +121,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 329.50390243530273,
+    "width": 283.50271224975586,
     "collapsed": true
   },
   "right": {
@@ -248,8 +251,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "787485085a6c642e",
+  "active": "1103584f040cb875",
   "lastOpenFiles": [
+    "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
+    "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test",
+    "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test.cpp",
+    "Human/University/4th Sem/Algorithm/Dynamic programming",
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
     "Human/University/4th Sem/DCN/Chapter 2.pdf",
     "Human/University/4th Sem/DCN/Application Layer.md",
@@ -279,14 +286,10 @@
     "Human/University/3rd Semester/DCN/Unconfirmed 599891.crdownload",
     "Human/University/4th Sem/DCN/04. Transport Layer.pdf",
     "Human/University/3rd Semester/DCN/Unconfirmed 108059.crdownload",
-    "Human/University/4th Sem/DCN/03. Explanation_of_HTTP.pdf",
     "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
     "Human/University/4th Sem/Ethics/Ethics summary note.md",
     "Human/University/4th Sem/DCN/Access Networks.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
-    "Application Layer.md",
-    "Machine",
-    "Human/University/4th Sem/DCN",
-    "copilot/copilot-custom-prompts/Clip Web Page.md"
+    "Application Layer.md"
   ]
 }

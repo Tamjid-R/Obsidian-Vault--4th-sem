@@ -490,3 +490,7 @@ INF 0   3
 Final shortest path matrix found.
 
 ---
+
+## Dynamic Programming
+
+For basic concepts, memoization vs tabulation, standard problems (Frog Stairs, Frog K-Steps), and solved questions (Minimum Coins, Friends Pairing), refer to the dedicated **[[Dynamic programming/Dynamic programming|Dynamic Programming Notes]]** folder.
