@@ -20,6 +20,16 @@
               "icon": "lucide-file",
               "title": "Dynamic programming"
             }
+          },
+          {
+            "id": "e8233d57266d3e8b",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
           }
         ]
       }
