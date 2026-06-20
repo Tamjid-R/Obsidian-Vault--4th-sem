@@ -216,6 +216,36 @@ int countWaysToClimb(int n) {
   * **Worst Case:** $O(N)$
 * **Space Complexity:** $O(1)$ space for optimized version (only tracking previous two states), or $O(N)$ if using full `dp` array.
 
+#### Variation: Climbing 1, 2, or 3 Steps
+**Problem:** You can climb either 1, 2, or 3 steps at a time. Find the total number of distinct ways to reach step $N$.
+
+* **State:** `dp[i]` = Number of ways to reach step `i`.
+* **Recurrence Relation:** `dp[i] = dp[i-1] + dp[i-2] + dp[i-3]` (To reach step `i`, your last move must have been a 1-step jump from `i-1`, a 2-step jump from `i-2`, or a 3-step jump from `i-3`).
+* **Base Cases:**
+  * `dp[0] = 1` (1 way to stay at step 0: do nothing)
+  * `dp[1] = 1` (1 way to reach step 1: jump 1 step)
+  * `dp[2] = 2` (2 ways to reach step 2: `[1, 1]` or `[2]`)
+
+##### Pseudocode (Tabulation)
+```text
+CLIMB-3-STEPS(N):
+    if N <= 1:
+        return 1
+    if N == 2:
+        return 2
+    create array dp of size N + 1
+    dp[0] = 1
+    dp[1] = 1
+    dp[2] = 2
+    for i = 3 to N:
+        dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+    return dp[N]
+```
+
+##### Complexity Analysis
+* **Time Complexity:** $O(N)$
+* **Space Complexity:** $O(N)$ (or $O(1)$ if space-optimized using rolling variables)
+
 ---
 
 ### B. Frog K-Steps
@@ -710,6 +740,21 @@ Test your understanding of dynamic programming by solving these classic problems
   * **Time Complexity:** $O(N)$ because we iterate through the list of houses exactly once.
   * **Space Complexity:** $O(N)$ to store the DP table (can be optimized to $O(1)$ by keeping track of only the previous two outcomes).
 
+##### Pseudocode (Tabulation)
+```text
+HOUSE-ROBBER(money, N):
+    if N == 0:
+        return 0
+    if N == 1:
+        return money[0]
+    create array dp of size N
+    dp[0] = money[0]
+    dp[1] = max(money[0], money[1])
+    for i = 2 to N - 1:
+        dp[i] = max(dp[i-1], money[i] + dp[i-2])
+    return dp[N-1]
+```
+
 ---
 
 ### 2. Grid Minimum Path Sum
@@ -725,6 +770,21 @@ Test your understanding of dynamic programming by solving these classic problems
 * **Complexity:**
   * **Time Complexity:** $O(M \cdot N)$ as we visit every cell in the grid exactly once.
   * **Space Complexity:** $O(M \cdot N)$ to store the 2D DP matrix (can be optimized to $O(N)$ by keeping only the previous row in memory).
+
+##### Pseudocode (Tabulation)
+```text
+GRID-MIN-PATH-SUM(grid, M, N):
+    create 2D array dp of size M x N
+    dp[0][0] = grid[0][0]
+    for j = 1 to N - 1:
+        dp[0][j] = dp[0][j-1] + grid[0][j]
+    for i = 1 to M - 1:
+        dp[i][0] = dp[i-1][0] + grid[i][0]
+    for i = 1 to M - 1:
+        for j = 1 to N - 1:
+            dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+    return dp[M-1][N-1]
+```
 
 ---
 
@@ -744,6 +804,25 @@ Test your understanding of dynamic programming by solving these classic problems
   * **Time Complexity:** $O(N \cdot Target)$ where $N$ is the number of elements and $Target = TotalSum / 2$.
   * **Space Complexity:** $O(N \cdot Target)$ for the DP table (can be optimized to $O(Target)$).
 
+##### Pseudocode (Tabulation)
+```text
+PARTITION-EQUAL-SUBSET-SUM(nums, N):
+    totalSum = sum of all elements in nums
+    if totalSum is odd:
+        return false
+    target = totalSum / 2
+    create 2D array dp of size (N + 1) x (target + 1) initialized to false
+    for i = 0 to N:
+        dp[i][0] = true
+    for i = 1 to N:
+        for j = 1 to target:
+            if nums[i-1] <= j:
+                dp[i][j] = dp[i-1][j] or dp[i-1][j - nums[i-1]]
+            else:
+                dp[i][j] = dp[i-1][j]
+    return dp[N][target]
+```
+
 ---
 
 ### 4. Longest Increasing Subsequence (LIS)
@@ -757,6 +836,21 @@ Test your understanding of dynamic programming by solving these classic problems
 * **Complexity:**
   * **Time Complexity:** $O(N^2)$ because for each element we scan all previous elements. (Note: An $O(N \log N)$ approach is possible using binary search).
   * **Space Complexity:** $O(N)$ to store the `dp` array.
+
+##### Pseudocode (Tabulation)
+```text
+LIS(arr, N):
+    if N == 0:
+        return 0
+    create array dp of size N initialized to 1
+    maxLIS = 1
+    for i = 1 to N - 1:
+        for j = 0 to i - 1:
+            if arr[j] < arr[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+        maxLIS = max(maxLIS, dp[i])
+    return maxLIS
+```
 
 ---
 
@@ -778,5 +872,26 @@ Test your understanding of dynamic programming by solving these classic problems
 * **Complexity:**
   * **Time Complexity:** $O(M \cdot N)$ where $M$ and $N$ are the lengths of `word1` and `word2`.
   * **Space Complexity:** $O(M \cdot N)$ to store the 2D operations table (can be optimized to $O(N)$).
+
+##### Pseudocode (Tabulation)
+```text
+EDIT-DISTANCE(word1, word2):
+    M = word1.length
+    N = word2.length
+    create 2D array dp of size (M + 1) x (N + 1)
+    for i = 0 to M:
+        dp[i][0] = i
+    for j = 0 to N:
+        dp[0][j] = j
+    for i = 1 to M:
+        for j = 1 to N:
+            if word1[i-1] == word2[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+            else:
+                dp[i][j] = 1 + min(dp[i-1][j],      // Delete
+                                   dp[i][j-1],      // Insert
+                                   dp[i-1][j-1])    // Replace
+    return dp[M][N]
+```
 
 ---
