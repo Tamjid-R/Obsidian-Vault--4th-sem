@@ -216,36 +216,6 @@ int countWaysToClimb(int n) {
   * **Worst Case:** $O(N)$
 * **Space Complexity:** $O(1)$ space for optimized version (only tracking previous two states), or $O(N)$ if using full `dp` array.
 
-#### Variation: Climbing 1, 2, or 3 Steps
-**Problem:** You can climb either 1, 2, or 3 steps at a time. Find the total number of distinct ways to reach step $N$.
-
-* **State:** `dp[i]` = Number of ways to reach step `i`.
-* **Recurrence Relation:** `dp[i] = dp[i-1] + dp[i-2] + dp[i-3]` (To reach step `i`, your last move must have been a 1-step jump from `i-1`, a 2-step jump from `i-2`, or a 3-step jump from `i-3`).
-* **Base Cases:**
-  * `dp[0] = 1` (1 way to stay at step 0: do nothing)
-  * `dp[1] = 1` (1 way to reach step 1: jump 1 step)
-  * `dp[2] = 2` (2 ways to reach step 2: `[1, 1]` or `[2]`)
-
-##### Pseudocode (Tabulation)
-```text
-CLIMB-3-STEPS(N):
-    if N <= 1:
-        return 1
-    if N == 2:
-        return 2
-    create array dp of size N + 1
-    dp[0] = 1
-    dp[1] = 1
-    dp[2] = 2
-    for i = 3 to N:
-        dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
-    return dp[N]
-```
-
-##### Complexity Analysis
-* **Time Complexity:** $O(N)$
-* **Space Complexity:** $O(N)$ (or $O(1)$ if space-optimized using rolling variables)
-
 ---
 
 ### B. Frog K-Steps
@@ -566,38 +536,7 @@ We initialize `dp` table of size $7$ ($0$ to $6$) with $\infty$ (infinity), exce
 
 **Result:** Minimum coins to spend $6$ units is `dp[6] = 2` (using coins $\{3, 3\}$).
 
-### 3. C++ Implementation (Tabulation)
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-const int INF = 1e9;
-
-int getMinCoins(vector<int>& coins, int sum) {
-    vector<int> dp(sum + 1, INF);
-    dp[0] = 0; // Base case
-
-    for (int x = 1; x <= sum; x++) {
-        for (int coin : coins) {
-            if (x - coin >= 0) {
-                dp[x] = min(dp[x], 1 + dp[x - coin]);
-            }
-        }
-    }
-    return dp[sum] == INF ? -1 : dp[sum];
-}
-
-int main() {
-    vector<int> coins = {1, 3, 4};
-    int target = 6;
-    cout << "Min coins for " << target << " is: " << getMinCoins(coins, target) << endl;
-    return 0;
-}
-```
-
-### 4. Pseudocode
+### 3. Pseudocode
 ```text
 MIN-COINS(Coins, Sum):
     create array dp of size Sum + 1 filled with INF
@@ -609,25 +548,14 @@ MIN-COINS(Coins, Sum):
     return dp[Sum]
 ```
 
-### 5. Recursive Analysis
-* **Recursive Call Structure:**
-  ```cpp
-  int minCoinsRec(int x, vector<int>& coins, vector<int>& memo) {
-      if (x == 0) return 0;
-      if (x < 0) return INF;
-      if (memo[x] != -1) return memo[x];
-      int minCoins = INF;
-      for (int coin : coins) {
-          minCoins = min(minCoins, 1 + minCoinsRec(x - coin, coins, memo));
-      }
-      return memo[x] = minCoins;
-  }
-  ```
+### 4. Recursive Analysis
+* **Recursive Call Structure (Alternate Recursive Version):**
+  * Subproblem state `x` is recursively evaluated from `x` down to `0`.
 * **Recursive Calls:** `minCoinsRec(x - coin, coins, memo)`.
 * **Recursion Frequency:** For target sum $S$, there are $S$ unique subproblems. Each subproblem checks $C$ coins, giving a total recurrence activation frequency of $S \cdot C$ calls.
 * **Recursive Alternatives for Loops:** The outer loop `x` can be replaced by the recursion stack, and the inner loop over coins can be replaced by recursive sub-branches executing for each element in the coin list.
 
-### 6. Complexity Analysis
+### 5. Complexity Analysis
 * **Loops:**
   * Outer loop runs $S$ times (where $S = \text{Sum}$).
   * Inner loop runs $C$ times (where $C = \text{number of coin denominations}$).
@@ -656,32 +584,7 @@ Given $N$ friends, each one can remain single or can be paired up with some othe
   * `dp[1] = 1` (1 way for 1 person: remain single)
   * `dp[2] = 2` (2 ways for 2 people: both single `(A, B)` or paired up `(AB)`)
 
-### 2. C++ Implementation (Tabulation)
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int countFriendsPairingWays(int n) {
-    if (n <= 1) return 1;
-    vector<int> dp(n + 1, 0);
-    dp[0] = 1;
-    dp[1] = 1;
-
-    for (int i = 2; i <= n; i++) {
-        dp[i] = dp[i - 1] + (i - 1) * dp[i - 2];
-    }
-    return dp[n];
-}
-
-int main() {
-    int n = 4;
-    cout << "Total ways to pair " << n << " friends: " << countFriendsPairingWays(n) << endl;
-    return 0;
-}
-```
-
-### 3. Pseudocode
+### 2. Pseudocode
 ```text
 FRIENDS-PAIRING(N):
     if N <= 1:
@@ -694,20 +597,14 @@ FRIENDS-PAIRING(N):
     return dp[N]
 ```
 
-### 4. Recursive Analysis
-* **Recursive Call Structure:**
-  ```cpp
-  int solveRec(int i, vector<int>& memo) {
-      if (i <= 1) return 1;
-      if (memo[i] != -1) return memo[i];
-      return memo[i] = solveRec(i - 1, memo) + (i - 1) * solveRec(i - 2, memo);
-  }
-  ```
+### 3. Recursive Analysis
+* **Recursive Call Structure (Alternate Recursive Version):**
+  * Subproblem state `i` is recursively evaluated from `i` down to `0`.
 * **Recursive Calls:** `solveRec(i - 1, memo)` and `solveRec(i - 2, memo)`.
 * **Recursion Frequency:** For $N$ friends, there are exactly $N + 1$ states, each visited and calculated exactly once.
 * **Recursive Alternatives for Loops:** The iterative loop `for (int i = 2; i <= n; i++)` is replaced by the recursive call stack traversing from $N$ down to base cases.
 
-### 5. Complexity Analysis
+### 4. Complexity Analysis
 * **Loops:**
   * Loop runs $N - 1$ times, with $O(1)$ operations inside.
 * **Overall Complexity:**
@@ -715,6 +612,48 @@ FRIENDS-PAIRING(N):
   * **Average Case:** $O(N)$
   * **Worst Case:** $O(N)$
 * **Space Complexity:** $O(N)$ to hold the `dp` table. Can be optimized to $O(1)$ by using variables `prev1` and `prev2`.
+
+---
+
+**Q. Climbing 1, 2, or 3 Steps:**
+You can climb 1, 2, or 3 steps at a time. How many ways to reach step $N$? Solve using DP by identifying the state, recurrence relation, and base cases. Show the tabulation pseudocode.
+
+**ANS:**
+### 1. DP Formulation
+* **State:** Let `dp[i]` be the total number of distinct ways to reach step `i`.
+* **Recurrence Relation:** 
+  `dp[i] = dp[i-1] + dp[i-2] + dp[i-3]` (To reach step `i`, the last move must have been a 1-step jump from `i-1`, a 2-step jump from `i-2`, or a 3-step jump from `i-3`).
+* **Base Cases:**
+  * `dp[0] = 1` (1 way to stay at step 0: do nothing)
+  * `dp[1] = 1` (1 way to reach step 1: jump 1 step)
+  * `dp[2] = 2` (2 ways to reach step 2: `[1, 1]` or `[2]`)
+
+### 2. Pseudocode
+```text
+CLIMB-3-STEPS(N):
+    if N <= 1:
+        return 1
+    if N == 2:
+        return 2
+    create array dp of size N + 1
+    dp[0] = 1
+    dp[1] = 1
+    dp[2] = 2
+    for i = 3 to N:
+        dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+    return dp[N]
+```
+
+### 3. Recursive Analysis
+* **Recursive Call Structure (Alternate Recursive Version):**
+  * Subproblem state `i` is recursively evaluated from `i` down to `0`.
+* **Recursive Calls:** `solveRec(i - 1, memo)`, `solveRec(i - 2, memo)`, and `solveRec(i - 3, memo)`.
+* **Recursion Frequency:** $N$ unique recursive states, each resolved in $O(1)$ due to memoization.
+* **Recursive Alternatives for Loops:** The iterative loop `for (int i = 3; i <= n; i++)` is replaced by the recursive call stack traversing from $N$ down to base cases.
+
+### 4. Complexity Analysis
+* **Time Complexity:** $O(N)$
+* **Space Complexity:** $O(N)$ (can be optimized to $O(1)$ by using rolling variables)
 
 ---
 

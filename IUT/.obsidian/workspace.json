@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "787485085a6c642e",
+            "id": "c392b45ef59918a8",
             "type": "leaf",
             "pinned": true,
             "state": {
@@ -62,6 +62,16 @@
               "pinned": true,
               "icon": "terminal",
               "title": "Terminal: zsh"
+            }
+          },
+          {
+            "id": "99c65ba4f584e1cd",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
@@ -252,7 +262,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "787485085a6c642e",
+  "active": "c392b45ef59918a8",
   "lastOpenFiles": [
     "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
     "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
