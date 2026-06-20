@@ -64,6 +64,30 @@ Let's trace the calculation of Fibonacci $F(4) = F(3) + F(2)$ with memo array in
 ### Tabulation (Bottom-Up)
 Tabulation starts from the base cases and iteratively fills a table (array) in a forward direction using a loop until the target state is reached.
 
+#### Step-by-Step Tabulation Table Walkthrough ($F(4)$ Fibonacci)
+Let's trace how the bottom-up table `dp` is filled for $F(4) = F(3) + F(2)$ with the table size $N+1 = 5$:
+
+| Step | Loop Index `i` | dp Table State (`[0, 1, 2, 3, 4]`) | Action / Computation |
+| :--- | :---: | :--- | :--- |
+| **1** | — | `[0, 1, -1, -1, -1]` | Initialize base cases: `dp[0] = 0`, `dp[1] = 1`. |
+| **2** | `i = 2` | `[0, 1, 1, -1, -1]` | Compute `dp[2] = dp[1] + dp[0] = 1 + 0 = 1`. |
+| **3** | `i = 3` | `[0, 1, 1, 2, -1]` | Compute `dp[3] = dp[2] + dp[1] = 1 + 1 = 2`. |
+| **4** | `i = 4` | `[0, 1, 1, 2, 3]` | Compute `dp[4] = dp[3] + dp[2] = 2 + 1 = 3`. Target reached. |
+
+
+### Visualizing 2D DP Tables: Top-Down vs. Bottom-Up
+For a 2D dynamic programming problem (such as Knapsack or LCS), the grid states are resolved differently under the two approaches:
+
+1. **Top-Down (Memoization - Sparse Filling)**:
+   * Only the subproblems along the recursive pathways are calculated and stored.
+   * Unreached states remain in their initial state (e.g., `-1` or `unsolved`).
+   * Saves computation time if a significant portion of the state space is unreachable.
+
+2. **Bottom-Up (Tabulation - Dense/Complete Filling)**:
+   * The matrix is filled in a strict topological order (typically row-by-row, column-by-column).
+   * Every cell in the grid is computed sequentially, ensuring all dependencies are resolved before they are needed.
+   * Eliminates recursion stack overhead and enables easy space-optimization (e.g., keeping only the previous row/column).
+
 #### Comparison Table
 
 | Feature | Memoization (Top-Down) | Tabulation (Bottom-Up) |
@@ -295,6 +319,30 @@ int knapsack01(int W, const vector<int>& wt, const vector<int>& val, int n) {
   * **Worst Case:** $O(N \cdot W)$
 * **Space Complexity:** $O(N \cdot W)$ to store the 2D array. Can be space-optimized to $O(W)$ by keeping only the previous row.
 
+#### 0/1 Knapsack DP Tables Comparison
+Given a knapsack of capacity $W = 4$ and three items: Item 1 ($wt=1, val=15$), Item 2 ($wt=2, val=20$), and Item 3 ($wt=3, val=30$).
+
+##### 1. Bottom-Up Tabulation Table (Fully Computed)
+Every state `dp[i][w]` is populated systematically row-by-row:
+
+| i \ w | 0 | 1 | 2 | 3 | 4 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **0 (empty)** | 0 | 0 | 0 | 0 | 0 |
+| **1 (Item 1)** | 0 | 15 | 15 | 15 | 15 |
+| **2 (Item 2)** | 0 | 15 | 20 | 35 | 35 |
+| **3 (Item 3)** | 0 | 15 | 20 | 35 | **45** |
+
+##### 2. Top-Down Memoization Table (Sparsely Computed)
+Only required subproblems are solved recursively. Unvisited states remain `-1`:
+*(Note: Base cases where $i=0$ or $w=0$ return $0$ directly without memo table writes).*
+
+| i \ w | 0 | 1 | 2 | 3 | 4 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **0 (empty)** | — | — | — | — | — |
+| **1 (Item 1)** | — | 15 | 15 | **-1** | 15 |
+| **2 (Item 2)** | — | 15 | **-1** | **-1** | 35 |
+| **3 (Item 3)** | — | **-1** | **-1** | **-1** | **45** |
+
 ---
 
 ### D. Longest Common Subsequence (LCS)
@@ -375,6 +423,30 @@ int getLCS(string S1, string S2) {
   * **Average Case:** $O(M \cdot N)$
   * **Worst Case:** $O(M \cdot N)$
 * **Space Complexity:** $O(M \cdot N)$ for storing the DP table. Can be space-optimized to $O(N)$ since only the previous row is needed.
+
+#### LCS DP Tables Comparison
+Given two strings: $S1 = \text{"AET"}$ and $S2 = \text{"AFT"}$.
+
+##### 1. Bottom-Up Tabulation Table (Fully Computed)
+Every state `dp[i][j]` is populated sequentially:
+
+| i \ j | 0 (ø) | 1 ('A') | 2 ('F') | 3 ('T') |
+| :---: | :---: | :---: | :---: | :---: |
+| **0 (ø)** | 0 | 0 | 0 | 0 |
+| **1 ('A')** | 0 | 1 | 1 | 1 |
+| **2 ('E')** | 0 | 1 | 1 | 1 |
+| **3 ('T')** | 0 | 1 | 1 | **2** |
+
+##### 2. Top-Down Memoization Table (Sparsely Computed)
+Only reachable subproblems are solved. Unvisited states remain `-1`:
+*(Note: Base cases where $i=0$ or $j=0$ return $0$ directly).*
+
+| i \ j | 0 (ø) | 1 ('A') | 2 ('F') | 3 ('T') |
+| :---: | :---: | :---: | :---: | :---: |
+| **0 (ø)** | — | — | — | — |
+| **1 ('A')** | — | 1 | 1 | **-1** |
+| **2 ('E')** | — | 1 | 1 | **-1** |
+| **3 ('T')** | — | **-1** | **-1** | **2** |
 
 ---
 
