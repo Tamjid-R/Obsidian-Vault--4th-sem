@@ -61,6 +61,31 @@ Let's trace the calculation of Fibonacci $F(4) = F(3) + F(2)$ with memo array in
 | **10**| `F(4)` | `[0, 1, 1, 2, -1]` | Calls `F(2)`. **Hits Memo Table:** `memo[2] = 1` returned instantly (No recursion!). |
 | **11**| `F(4)` | `[0, 1, 1, 2, 3]` | Computes `F(4) = 2 + 1 = 3`. Stores `memo[4] = 3`. Returns `3` |
 
+#### C++ Implementation (Memoization)
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Helper function to recursively solve subproblems and fill the memo table
+int fibMemoHelper(int n, vector<int>& memo) {
+    if (n <= 1) return n;
+    
+    // Check if the subproblem solution already exists in the memo table
+    if (memo[n] != -1) return memo[n];
+    
+    // Solve, store result in the memo table, and return it
+    return memo[n] = fibMemoHelper(n - 1, memo) + fibMemoHelper(n - 2, memo);
+}
+
+// Main function to run memoized Fibonacci
+int fibMemo(int n) {
+    // Initialize memo table of size n + 1 with -1 (representing unsolved states)
+    vector<int> memo(n + 1, -1);
+    return fibMemoHelper(n, memo);
+}
+```
+
 ### Tabulation (Bottom-Up)
 Tabulation starts from the base cases and iteratively fills a table (array) in a forward direction using a loop until the target state is reached.
 
@@ -74,6 +99,29 @@ Let's trace how the bottom-up table `dp` is filled for $F(4) = F(3) + F(2)$ with
 | **3** | `i = 3` | `[0, 1, 1, 2, -1]` | Compute `dp[3] = dp[2] + dp[1] = 1 + 1 = 2`. |
 | **4** | `i = 4` | `[0, 1, 1, 2, 3]` | Compute `dp[4] = dp[3] + dp[2] = 2 + 1 = 3`. Target reached. |
 
+#### C++ Implementation (Tabulation)
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int fibTabulation(int n) {
+    if (n <= 1) return n;
+    
+    // Create DP table of size n + 1 initialized to 0
+    vector<int> dp(n + 1, 0);
+    
+    // Fill in base cases
+    dp[0] = 0;
+    dp[1] = 1;
+    
+    // Iteratively fill the table from bottom to top
+    for (int i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+}
+```
 
 ### Visualizing 2D DP Tables: Top-Down vs. Bottom-Up
 For a 2D dynamic programming problem (such as Knapsack or LCS), the grid states are resolved differently under the two approaches:
