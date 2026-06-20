@@ -64,7 +64,8 @@
               "title": "Terminal: zsh"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -251,7 +252,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "1103584f040cb875",
+  "active": "787485085a6c642e",
   "lastOpenFiles": [
     "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
     "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
