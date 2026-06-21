@@ -74,7 +74,7 @@ A "no-frills," "bare-bones" Internet transport protocol.
 | **Dest Port #** | 16 bits | Receiving process port |
 | **Length** | 16 bits | Length in bytes of UDP segment (including header) |
 | **Checksum** | 16 bits | Used to detect errors (flipped bits) |
-
+![[Pasted image 20260621212425.png]]
 ### 3.3 Internet Checksum
 **Goal:** Detect errors in the transmitted segment.
 *   **Sender:**
