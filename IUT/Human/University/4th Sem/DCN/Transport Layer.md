@@ -9,6 +9,14 @@ The Transport Layer provides **logical communication** between application proce
 ### 1.1 Key Functions
 *   **Sender Side:** Breaks application messages into **segments** and passes them to the [[Network Layer]].
 *   **Receiver Side:** Reassembles segments into messages and passes them to the [[Application Layer]] via **sockets**.
+two transport protocols available to
+Internet applications
+		*• TCP: reliable, in-order delivery
+			congestion control - protects
+			network
+			 flow control - protects endpoints
+			connection setup
+		UDP
 
 ### 1.2 Transport vs. Network Layer (The Household Analogy)
 *   **Hosts** = Houses
