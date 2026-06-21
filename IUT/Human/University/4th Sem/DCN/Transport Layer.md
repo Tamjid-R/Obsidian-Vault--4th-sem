@@ -30,6 +30,18 @@ Internet applications
 ## 2. Multiplexing and Demultiplexing
 How the transport layer directs data to the correct socket.
 
+**Multiplexing** is the process of _gathering_ data from multiple applications on your device, wrapping it up, and sending it out over the network.
+
+**How it works (Step-by-Step):**
+
+1. Your web browser, Spotify, and video game all generate different data at the same time.
+2. Each application sends its data down to the transport layer, along with a "header" that includes its **source port** (e.g., Browser = port 49152, Spotify = port 49153).
+3. The transport layer attaches its own header (either TCP or UDP) to each piece of data, creating **Segments**.
+4. It hands all these separate segments down to the Network Layer (IP).
+5. The IP layer bundles them all into packets and fires them across the internet.
+    
+    - **The Key Takeaway:** Multiplexing is a **"many-to-one"** job. Many applications send data, but one single network interface card (NIC) sends it all out over the wire.
+
 ### 2.1 Demultiplexing (at Receiver)
 The host uses IP addresses and **port numbers** to direct segments to the appropriate socket.
 *   **Connectionless (UDP) Demux:** Sockets are identified by a 2-tuple: (**Destination IP**, **Destination Port**). Segments with the same destination port but different source IPs/ports are directed to the same socket.
