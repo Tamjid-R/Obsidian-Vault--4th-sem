@@ -30,7 +30,7 @@ Internet applications
 ## 2. Multiplexing and Demultiplexing
 How the transport layer directs data to the correct socket.
 
-**Multiplexing** is the process of _gathering_ data from multiple applications on your device, wrapping it up, and sending it out over the network.
+**Multiplexing** is the process of _gathering_ data from multiple applications on your device, adds transport header, and sending it out over the network.
 
 **How it works (Step-by-Step):**
 
