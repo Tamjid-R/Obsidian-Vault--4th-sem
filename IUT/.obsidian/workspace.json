@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -251,8 +251,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e8233d57266d3e8b",
+  "active": "974657396c289a6b",
   "lastOpenFiles": [
+    "Human/University/4th Sem/DCN/Chapter 2 summary.md",
     "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Data Centre Networks.md",
     "Human/University/4th Sem/DCN/Computer Networking A Top-Down Approach, 8th Edition by James F. Kurose, Keith W. Ross-Pearson.pdf",
@@ -260,7 +261,6 @@
     "Human/University/4th Sem/DCN/05. Introduction & IP.pdf",
     "Human/University/4th Sem/DCN/04. Transport Layer.pdf",
     "Human/University/4th Sem/DCN/03. Explanation_of_HTTP.pdf",
-    "Human/University/4th Sem/DCN/Chapter 2 summary.md",
     "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
     "Human/University/4th Sem/DCN/HTTP.md",
