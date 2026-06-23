@@ -63,8 +63,7 @@
               "title": "Chapter 1 Summary"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -251,10 +250,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e8233d57266d3e8b",
+  "active": "1103584f040cb875",
   "lastOpenFiles": [
-    "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
+    "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
     "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/HTTP.md",
