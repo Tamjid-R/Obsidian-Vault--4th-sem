@@ -13,22 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Human/University/4th Sem/DCN/Chapter 2 summary.md",
+                "file": "Human/University/4th Sem/DCN/DNS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 2 summary"
+              "title": "DNS"
             }
           },
           {
             "id": "e8233d57266d3e8b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Human/University/4th Sem/DCN/Chapter 2 summary.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Chapter 2 summary"
             }
           },
           {
@@ -59,8 +63,7 @@
               "title": "Chapter 1 Summary"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -247,9 +250,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "974657396c289a6b",
+  "active": "1103584f040cb875",
   "lastOpenFiles": [
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
+    "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
     "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/HTTP.md",
@@ -263,7 +267,6 @@
     "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test.cpp",
     "Human/University/4th Sem/Algorithm/Dynamic programming",
     "Human/University/4th Sem/DCN/Chapter 2.pdf",
-    "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Computer Networking A Top-Down Approach, 8th Edition by James F. Kurose, Keith W. Ross-Pearson.pdf",
     "Human/University/4th Sem/DCN/Chapter 1.pdf",
     "Encapsulation.md",
