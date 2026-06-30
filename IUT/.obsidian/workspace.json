@@ -4,63 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "691b82a061f530dc",
+        "id": "bf963b484760bc2f",
         "type": "tabs",
         "children": [
           {
-            "id": "1103584f040cb875",
+            "id": "b43f7ceb113353bb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Human/University/4th Sem/DCN/DNS.md",
+                "file": "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "DNS"
+              "title": "All Algorithms folder"
             }
           },
           {
-            "id": "e8233d57266d3e8b",
+            "id": "8a5d4e429247c351",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Human/University/4th Sem/DCN/Chapter 2 summary.md",
+                "file": "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 2 summary"
-            }
-          },
-          {
-            "id": "a8591006f78b3467",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Human/University/4th Sem/DCN/Application Layer.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Application Layer"
-            }
-          },
-          {
-            "id": "974657396c289a6b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 1 Summary"
+              "title": "Dynamic programming"
             }
           }
         ]
@@ -250,9 +222,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "1103584f040cb875",
+  "active": "b43f7ceb113353bb",
   "lastOpenFiles": [
+    "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
+    "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
     "Human/University/4th Sem/DCN/Chapter 1 Summary.md",
+    "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
     "Human/University/4th Sem/DCN/DNS.md",
     "Human/University/4th Sem/DCN/Data Centre Networks.md",
@@ -261,13 +236,10 @@
     "Human/University/4th Sem/DCN/05. Introduction & IP.pdf",
     "Human/University/4th Sem/DCN/04. Transport Layer.pdf",
     "Human/University/4th Sem/DCN/03. Explanation_of_HTTP.pdf",
-    "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/HTTP.md",
     "Human/University/4th Sem/DCN/Network Layer.md",
     "Human/University/4th Sem/DCN/Transport Layer.md",
     "Pasted image 20260621212425.png",
-    "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
-    "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
     "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test",
     "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test.cpp",
     "Human/University/4th Sem/Algorithm/Dynamic programming",
