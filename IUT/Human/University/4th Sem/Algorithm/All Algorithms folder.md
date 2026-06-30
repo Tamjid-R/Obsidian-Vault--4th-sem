@@ -85,18 +85,22 @@ void prim(int start, int n, vector<vector<pii>>& adj) {
 
 #### Pseudocode
 ```text
-PRIM(G, r):
-    for each u in G.V:
-        u.key = INF
-        u.parent = NIL
-    r.key = 0
-    Q = G.V (priority queue)
-    while Q is not empty:
-        u = EXTRACT-MIN(Q)
-        for each v in G.adj[u]:
-            if v in Q and w(u, v) < v.key:
-                v.parent = u
-                v.key = w(u, v)
+PRIM(G, start):
+    visited = array of size V initialized to False
+    PQ = Min-Priority Queue of (weight, vertex)
+    PQ.push((0, start))
+    total_cost = 0
+
+    while PQ is not empty:
+        (w, u) = PQ.pop()
+        if visited[u] is True:
+            continue
+        visited[u] = True
+        total_cost = total_cost + w
+
+        for each neighbor (v, weight) of u:
+            if visited[v] is False:
+                PQ.push((weight, v))
 ```
 
 #### Recursive Analysis
@@ -186,15 +190,16 @@ void kruskal(int n, vector<Edge>& edges) {
 #### Pseudocode
 ```text
 KRUSKAL(G):
-    A = empty set
-    for each vertex v in G.V:
-        MAKE-SET(v)
-    sort the edges of G.E into non-decreasing order by weight w
-    for each edge (u, v) in G.E, taken in non-decreasing order by weight:
-        if FIND-SET(u) != FIND-SET(v):
-            A = A union {(u, v)}
-            UNION(u, v)
-    return A
+    sort the edges of G by weight in ascending order
+    initialize DSU with V elements
+    MST = empty list
+
+    for each edge (u, v, weight) in sorted edges:
+        if find(u) != find(v):
+            union(u, v)
+            add (u, v) to MST
+
+    return MST
 ```
 
 #### Recursive Analysis
@@ -282,15 +287,22 @@ void dijkstra(int start, int n, vector<vector<pii>>& adj) {
 
 #### Pseudocode
 ```text
-DIJKSTRA(G, w, s):
-    INITIALIZE-SINGLE-SOURCE(G, s)
-    S = empty set
-    Q = G.V
-    while Q is not empty:
-        u = EXTRACT-MIN(Q)
-        S = S union {u}
-        for each vertex v in G.adj[u]:
-            RELAX(u, v, w)
+DIJKSTRA(G, start):
+    dist = array of size V filled with INF
+    dist[start] = 0
+    PQ = Min-Priority Queue of (distance, vertex)
+    PQ.push((0, start))
+
+    while PQ is not empty:
+        (d, u) = PQ.pop()
+        
+        if d > dist[u]:
+            continue
+
+        for each neighbor (v, weight) of u:
+            if dist[u] + weight < dist[v]:
+                dist[v] = dist[u] + weight
+                PQ.push((dist[v], v))
 ```
 
 #### Recursive Analysis
@@ -374,16 +386,23 @@ void bellmanFord(int start, int n, int e, vector<Edge>& edges) {
 In massive networks like the global internet routing infrastructure (BGP), using a pure Bellman-Ford approach would be prohibitive. For a network with 100,000 routers ($V$) and 500,000 links ($E$), Bellman-Ford would require up to 50 billion operations, whereas Dijkstra would require roughly 10 million. This massive difference in computational cost is why Bellman-Ford is typically reserved only for graphs where negative edge weights are a possibility or for specific distance-vector protocols where its distributed nature is an advantage.
 
 #### Pseudocode
-```ps
-BELLMAN-FORD(G, w, s):
-    INITIALIZE-SINGLE-SOURCE(G, s)
-    for i = 1 to |G.V| - 1:
-        for each edge (u, v) in G.E:
-            RELAX(u, v, w)
-    for each edge (u, v) in G.E:
-        if v.d > u.d + w(u, v):
-            return FALSE
-    return TRUE
+```text
+BELLMAN-FORD(G, start):
+    dist = array of size V filled with INF
+    dist[start] = 0
+
+    // Relax all edges V-1 times
+    for i = 1 to V - 1:
+        for each edge (u, v, weight) in G.edges:
+            if dist[u] != INF and dist[u] + weight < dist[v]:
+                dist[v] = dist[u] + weight
+
+    // Check for negative cycles
+    for each edge (u, v, weight) in G.edges:
+        if dist[u] != INF and dist[u] + weight < dist[v]:
+            return "Negative cycle detected"
+
+    return dist
 ```
 
 #### Recursive Analysis
@@ -475,15 +494,17 @@ void floydWarshall(int n, vector<vector<int>>& graph) {
 
 #### Pseudocode
 ```text
-FLOYD-WARSHALL(W):
-    n = W.rows
-    D(0) = W
-    for k = 1 to n:
-        let D(k) = d_ij(k) be a new n x n matrix
-        for i = 1 to n:
-            for j = 1 to n:
-                d_ij(k) = min(d_ij(k-1), d_ik(k-1) + d_kj(k-1))
-    return D(n)
+FLOYD-WARSHALL(graph):
+    dist = copy of graph matrix (where graph[i][j] is weight of edge (i,j))
+    n = number of vertices
+
+    for k = 0 to n - 1:
+        for i = 0 to n - 1:
+            for j = 0 to n - 1:
+                if dist[i][k] != INF and dist[k][j] != INF:
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+                    
+    return dist
 ```
 
 #### Recursive Analysis
@@ -567,25 +588,21 @@ void bfs(int start, int n, vector<vector<int>>& adj) {
 
 #### Pseudocode
 ```text
-BFS(G, s):
-    for each vertex u in G.V - {s}:
-        u.color = WHITE
-        u.d = INF
-        u.p = NIL
-    s.color = GRAY
-    s.d = 0
-    s.p = NIL
+BFS(G, start):
+    visited = array of size V filled with False
     Q = empty queue
-    ENQUEUE(Q, s)
+    
+    visited[start] = True
+    ENQUEUE(Q, start)
+
     while Q is not empty:
         u = DEQUEUE(Q)
-        for each v in G.adj[u]:
-            if v.color == WHITE:
-                v.color = GRAY
-                v.d = u.d + 1
-                v.p = u
+        process u
+
+        for each neighbor v of u:
+            if visited[v] is False:
+                visited[v] = True
                 ENQUEUE(Q, v)
-        u.color = BLACK
 ```
 
 #### Recursive Analysis
@@ -649,25 +666,18 @@ void dfs(int n, vector<vector<int>>& adj) {
 #### Pseudocode
 ```text
 DFS(G):
+    visited = array of size V filled with False
     for each vertex u in G.V:
-        u.color = WHITE
-        u.p = NIL
-    time = 0
-    for each vertex u in G.V:
-        if u.color == WHITE:
-            DFS-VISIT(G, u)
+        if visited[u] is False:
+            DFS-VISIT(G, u, visited)
 
-DFS-VISIT(G, u):
-    time = time + 1
-    u.d = time
-    u.color = GRAY
-    for each v in G.adj[u]:
-        if v.color == WHITE:
-            v.p = u
-            DFS-VISIT(G, v)
-    u.color = BLACK
-    time = time + 1
-    u.f = time
+DFS-VISIT(G, u, visited):
+    visited[u] = True
+    process u
+    
+    for each neighbor v of u:
+        if visited[v] is False:
+            DFS-VISIT(G, v, visited)
 ```
 
 #### Recursive Analysis
@@ -749,23 +759,26 @@ vector<int> topologicalSort(int n, vector<vector<int>>& adj) {
 TOPOLOGICAL-SORT-KAHN(G):
     in_degree = array of size V filled with 0
     for each vertex u in G.V:
-        for each v in G.adj[u]:
+        for each neighbor v of u:
             in_degree[v] = in_degree[v] + 1
+            
     Q = empty queue
     for i = 0 to V - 1:
         if in_degree[i] == 0:
             ENQUEUE(Q, i)
-    L = empty list
+            
+    order = empty list
     while Q is not empty:
         u = DEQUEUE(Q)
-        append u to L
-        for each v in G.adj[u]:
+        add u to order
+        for each neighbor v of u:
             in_degree[v] = in_degree[v] - 1
             if in_degree[v] == 0:
                 ENQUEUE(Q, v)
-    if L.size != V:
-        return error "Graph contains cycle"
-    return L
+                
+    if size of order != V:
+        return "Cycle detected, no topological sort exists"
+    return order
 ```
 
 #### Recursive Analysis
@@ -1054,36 +1067,33 @@ void mergeSort(vector<int>& arr, int l, int r) {
 
 #### Pseudocode
 ```text
-MERGE-SORT(A, p, r):
-    if p < r:
-        q = floor((p + r) / 2)
-        MERGE-SORT(A, p, q)
-        MERGE-SORT(A, q + 1, r)
-        MERGE(A, p, q, r)
+MERGE-SORT(A, low, high):
+    if low < high:
+        mid = floor((low + high) / 2)
+        MERGE-SORT(A, low, mid)
+        MERGE-SORT(A, mid + 1, high)
+        MERGE(A, low, mid, high)
 
-MERGE(A, p, q, r):
-    n1 = q - p + 1
-    n2 = r - q
-    let L[0..n1-1] and R[0..n2-1] be new arrays
-    for i = 0 to n1 - 1:
-        L[i] = A[p + i]
-    for j = 0 to n2 - 1:
-        R[j] = A[q + 1 + j]
-    i = 0, j = 0, k = p
-    while i < n1 and j < n2:
-        if L[i] <= R[j]:
-            A[k] = L[i]
+MERGE(A, low, mid, high):
+    left = slice of A from low to mid
+    right = slice of A from mid + 1 to high
+    
+    i = 0, j = 0, k = low
+    while i < left.length and j < right.length:
+        if left[i] <= right[j]:
+            A[k] = left[i]
             i = i + 1
         else:
-            A[k] = R[j]
+            A[k] = right[j]
             j = j + 1
         k = k + 1
-    while i < n1:
-        A[k] = L[i]
+        
+    while i < left.length:
+        A[k] = left[i]
         i = i + 1
         k = k + 1
-    while j < n2:
-        A[k] = R[j]
+    while j < right.length:
+        A[k] = right[j]
         j = j + 1
         k = k + 1
 ```
@@ -1153,17 +1163,25 @@ void countingSort(vector<int>& arr) {
 
 #### Pseudocode
 ```text
-COUNTING-SORT(A, B, k):
-    let C[0..k] be a new array
-    for i = 0 to k:
-        C[i] = 0
-    for j = 0 to A.length - 1:
-        C[A[j]] = C[A[j]] + 1
-    for i = 1 to k:
-        C[i] = C[i] + C[i - 1]
+COUNTING-SORT(A):
+    max_val = maximum element in A
+    min_val = minimum element in A
+    range = max_val - min_val + 1
+    count = array of size range initialized to 0
+    output = array of same size as A
+    
+    for each num in A:
+        count[num - min_val] = count[num - min_val] + 1
+        
+    for i = 1 to range - 1:
+        count[i] = count[i] + count[i - 1]
+        
     for j = A.length - 1 downto 0:
-        B[C[A[j]] - 1] = A[j]
-        C[A[j]] = C[A[j]] - 1
+        val = A[j]
+        output[count[val - min_val] - 1] = val
+        count[val - min_val] = count[val - min_val] - 1
+        
+    copy output to A
 ```
 
 #### Recursive Analysis
