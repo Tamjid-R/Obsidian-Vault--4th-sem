@@ -30,6 +30,82 @@ This file serves as a central repository for all algorithms studied in the 3rd S
 
 ---
 
+## Time and Space Complexity Fundamentals
+
+### 1. Asymptotic Notations
+In academic algorithm analysis, we use **asymptotic notation** to describe the running time or memory requirements of an algorithm as the input size grows toward infinity. This allows us to compare algorithms independent of hardware, compiler, or programming language differences.
+
+*   **Big O Notation ($O$):** Defines an asymptotic **upper bound**. A function $f(n) = O(g(n))$ if there exist positive constants $c$ and $n_0$ such that $f(n) \le c \cdot g(n)$ for all $n \ge n_0$. It represents the worst-case scenario.
+*   **Big Omega Notation ($\Omega$):** Defines an asymptotic **lower bound**. A function $f(n) = \Omega(g(n))$ if there exist positive constants $c$ and $n_0$ such that $f(n) \ge c \cdot g(n)$ for all $n \ge n_0$. It represents the best-case scenario.
+*   **Big Theta Notation ($\Theta$):** Defines an asymptotic **tight bound**. A function $f(n) = \Theta(g(n))$ if there exist positive constants $c_1$, $c_2$, and $n_0$ such that $c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)$ for all $n \ge n_0$. It indicates that the running time is proportional to $g(n)$ in all cases.
+
+### 2. Time Complexity Cases
+*   **Best Case (Lower Bound):** The minimum number of steps required to execute an algorithm for an input of size $N$ that is in the most favorable configuration.
+    *   *Example:* In [bubbleSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L829-L841), if the array is already sorted, the early exit optimization checks all elements in one pass without swapping, resulting in a best-case time complexity of $\Omega(N)$ (or $O(N)$).
+*   **Average Case (Expected Case):** The expected number of steps over all possible inputs of size $N$. This requires calculating the probability distribution of all possible inputs.
+    *   *Example:* In [insertionSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L960-L971), on average, we swap half of the elements in the sorted sub-array, leading to an average-case time complexity of $O(N^2)$.
+*   **Worst Case (Upper Bound):** The maximum number of steps required for any input of size $N$. It guarantees that the algorithm will not take longer than this bound.
+    *   *Example:* In [insertionSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L960-L971), when the input is sorted in reverse order, every element must be compared and shifted all the way to the beginning, resulting in a worst-case time complexity of $O(N^2)$.
+
+### 3. Space Complexity & Memory Management
+Space complexity measures the total memory space required by an algorithm to run to completion as a function of the input size.
+
+$$\text{Total Space Complexity} = \text{Input Space} + \text{Auxiliary Space}$$
+
+*   **Input Space:** The memory required to store the input data.
+*   **Auxiliary Space:** The temporary/extra space allocated by the algorithm during its execution (excluding the input itself).
+    *   **In-place Sorting:** Algorithms like [bubbleSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L829-L841), [selectionSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L895-L908), and [insertionSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L960-L971) require $O(1)$ auxiliary space because they swap elements directly inside the input array.
+    *   **Out-of-place Sorting:** [mergeSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L1053-L1060) requires $O(N)$ auxiliary space to allocate temporary arrays `L` and `R` for storing divided sub-arrays before merging.
+    *   **Recursion Stack Space:** Recursive algorithms consume call stack space proportional to the depth of recursion. For instance, [dfsRecursive](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L638-L647) has a worst-case call stack depth of $O(V)$ in a graph with a single linear path.
+
+### 4. Mathematical Analysis Techniques
+
+#### Iterative Loop Analysis
+To compute the time complexity of iterative code:
+1.  Identify the loops and their nesting.
+2.  Set up a summation representing the number of times the inner loop body executes.
+3.  Solve the summation mathematically.
+
+For example, in [selectionSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L895-L908), the outer loop runs $N-1$ times, and the inner loop runs from $i+1$ to $N-1$. The total number of comparisons is:
+
+$$\sum_{i=0}^{N-2} \sum_{j=i+1}^{N-1} 1 = \sum_{i=0}^{N-2} (N - 1 - i) = (N-1) + (N-2) + \dots + 1 = \frac{N(N-1)}{2} = O(N^2)$$
+
+#### Recursive Analysis (Divide and Conquer)
+Recursive time complexity is expressed via recurrence relations. For example, [mergeSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L1053-L1060) splits the array of size $N$ into two sub-arrays of size $N/2$ and merges them in linear time:
+
+$$T(N) = 2T\left(\frac{N}{2}\right) + O(N)$$
+
+Using the **Master Theorem** for recurrences of the form $T(N) = aT(N/b) + f(N)$:
+*   $a = 2, b = 2, f(N) = O(N^1)$
+*   Compare $f(N) = O(N^d)$ with $N^{\log_b a} = N^{\log_2 2} = N^1$.
+*   Since $d = \log_b a = 1$, Case 2 of the Master Theorem applies:
+    
+    $$T(N) = \Theta\left(N^{\log_b a} \log N\right) = \Theta(N \log N)$$
+
+### 5. Practical Complexity Classes and Trade-offs
+
+| Class | Growth Rate | Description | Examples |
+| :--- | :--- | :--- | :--- |
+| $O(1)$ | Constant | Operations do not depend on input size. | [DSU::unite](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L158-L162) (with path compression and union by rank). |
+| $O(\log N)$ | Logarithmic | Input size is divided in half at each step. | Binary Search, Priority Queue insertion/extraction. |
+| $O(N)$ | Linear | Step count scales proportionally with input size. | [countingSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L1132-L1156) (when $K$ is small). |
+| $O(N \log N)$ | Linearithmic | Divide-and-conquer processing of elements. | [mergeSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L1053-L1060), [kruskal](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L165-L180) (due to sorting edges). |
+| $O(N^2)$ | Quadratic | Nested iterations over the input size. | [bubbleSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L829-L841), [selectionSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L895-L908). |
+| $O(V^3)$ | Cubic | Triply nested iterations over vertices. | [floydWarshall](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L460-L482). |
+| $O(2^N)$ | Exponential | Doubling steps with each addition to input. | Unoptimized recursive Fibonacci or subset sum solutions. |
+
+#### Real-World Time-Space Trade-off
+*   **Counting Sort vs. Merge Sort:** [countingSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L1132-L1156) performs sorting in $O(N+K)$ time, which is faster than the $O(N \log N)$ lower bound of comparison-based sorting like [mergeSort](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L1053-L1060). However, it requires $O(N+K)$ auxiliary space. If the range of values $K$ is extremely large (e.g., $K = 10^9$ for a small array of size $N=10$), Counting Sort is highly impractical due to memory limits, making Merge Sort a better candidate.
+
+#### Real-World Graph Algorithm Selection
+*   **Dense vs. Sparse Graphs:** For finding a Minimum Spanning Tree:
+    *   [kruskal](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L165-L180) takes $O(E \log E)$ (which is $O(E \log V)$ since $E \le V^2$).
+    *   [prim](file:///Users/apple/Obsidian/IUT/Human/University/4th%20Sem/Algorithm/All%20Algorithms%20folder.md#L52-L75) using a binary heap takes $O((V+E) \log V)$.
+    *   In a **sparse graph** where $E \approx V$, Kruskal's simplifies to $O(V \log V)$, which is efficient and straightforward to implement.
+    *   In a **dense graph** where $E \approx V^2$, Kruskal's sorts $V^2$ edges, taking $O(V^2 \log V)$ time. Prim's algorithm using a Fibonacci heap can achieve a running time of $O(E + V \log V) \approx O(V^2)$, making it theoretically superior for dense networks.
+
+---
+
 ## Minimum Spanning Tree (MST)
 
 A Minimum Spanning Tree of a connected, undirected graph is a subgraph that is a tree and connects all the vertices together with the minimum possible total edge weight.
@@ -112,13 +188,13 @@ PRIM(G, start):
 
 #### Complexity Analysis
 - **Loops:**
-    - Main Loop: $V$ iterations.
-    - Priority Queue operations: $O(E \log V)$ or $O(E \log E)$.
+    - Main Loop: $V$ iterations (each vertex is extracted from the priority queue exactly once).
+    - Priority Queue operations: $O(E \log V)$ or $O(E \log E)$ (each edge is explored and potentially inserted/updated in the priority queue).
 - **Overall Complexity:**
-    - **Best Case:** $O((V + E) \log V)$
-    - **Average Case:** $O((V + E) \log V)$
-    - **Worst Case:** $O((V + E) \log V)$
-- **Space Complexity:** $O(V + E)$ for adjacency list and priority queue.
+    - **Best Case:** $O((V + E) \log V)$ — Occurs when the graph is sparse or connected; we must still visit all $V$ vertices and examine all $E$ edges to verify the minimum weight spanning tree.
+    - **Average Case:** $O((V + E) \log V)$ — Expected behavior over random graphs where all edges are checked and vertices are pushed to the priority queue.
+    - **Worst Case:** $O((V + E) \log V)$ — Occurs in dense graphs where every edge relaxation results in a priority queue update.
+- **Space Complexity:** $O(V + E)$ — Required to store the graph in an adjacency list ($O(V + E)$), the priority queue ($O(V)$), and tracking arrays like `visited` ($O(V)$).
 
 #### Example
 Graph: A-B (2), B-C (3), A-C (1). Start at A.
@@ -211,14 +287,14 @@ KRUSKAL(G):
 
 #### Complexity Analysis
 - **Loops:**
-    - Sorting edges: $O(E \log E)$.
-    - Main Loop: $E$ iterations.
-    - DSU operations: $O(E \alpha(V))$, where $\alpha$ is the inverse Ackermann function.
+    - Sorting edges: $O(E \log E)$ — Sorting all $E$ edges in non-decreasing order of weights.
+    - Main Loop: $E$ iterations — Scanning each sorted edge once.
+    - DSU operations: $O(E \alpha(V))$, where $\alpha$ is the inverse Ackermann function (extremely slow-growing, practically constant).
 - **Overall Complexity:**
-    - **Best Case:** $O(E \log E)$.
-    - **Average Case:** $O(E \log E)$.
-    - **Worst Case:** $O(E \log E)$.
-- **Space Complexity:** $O(V + E)$ to store edges and DSU parent array.
+    - **Best Case:** $O(E \log E)$ — Sorting all edges is always performed first, dominating the time complexity.
+    - **Average Case:** $O(E \log E)$ — Expected sorting time and subsequent union-find operations across random edge lists.
+    - **Worst Case:** $O(E \log E)$ — Reverse-sorted or fully dense graph where sorting takes maximum operations.
+- **Space Complexity:** $O(V + E)$ — Required for storing the edge list of size $E$ and the parent/rank arrays of size $V$ in the DSU.
 
 #### Example
 Graph: A-B (2), B-C (3), A-C (1).
@@ -314,14 +390,14 @@ DIJKSTRA(G, start):
 
 #### Complexity Analysis
 - **Loops:**
-    - Initialization: $O(V)$ Time.
-    - While loop: $V$ iterations (extract min).
-    - For loop: $E$ relaxations total across all iterations.
+    - Initialization: $O(V)$ time to set up the `dist` array.
+    - While loop: $V$ iterations (extracting the minimum distance vertex from the priority queue).
+    - For loop: $E$ iterations total across all steps to relax adjacent edges.
 - **Overall Complexity:**
-    - **Best Case:** $O(V + E \log V)$ or $O(E + V \log V)$ with Fibonacci heap.
-    - **Average Case:** $O(E \log V)$.
-    - **Worst Case:** $O(E \log V)$.
-- **Space Complexity:** $O(V + E)$ for adjacency list and distance array.
+    - **Best Case:** $O(V + E \log V)$ (using binary heap, where few relaxations update the priority queue) or $O(E + V \log V)$ (using Fibonacci heap, which has amortized $O(1)$ decrease-key).
+    - **Average Case:** $O(E \log V)$ — Expected time over random configurations where edge relaxation and heap updates occur dynamically.
+    - **Worst Case:** $O(E \log V)$ (for connected graphs, where $E \ge V-1$) — Occurs when every edge relaxation updates the heap, leading to $O(E)$ heap updates, each taking $O(\log V)$.
+- **Space Complexity:** $O(V + E)$ — Required for storing the graph in an adjacency list ($O(V + E)$), the priority queue ($O(V)$), and the distance array ($O(V)$).
 
 #### Example
 Graph: A-B (4), A-C (2), C-B (1), B-D (3). Source A.
@@ -414,13 +490,13 @@ BELLMAN-FORD(G, start):
 
 #### Complexity Analysis
 - **Loops:**
-    - Outer loop: Runs $V-1$ times.
-    - Inner loop: Runs $E$ times per outer iteration.
+    - Outer loop: Runs $V-1$ times (since the longest path without cycles in a graph can have at most $V-1$ edges).
+    - Inner loop: Iterates through all $E$ edges to perform relaxations in each pass.
 - **Overall Complexity:**
-    - **Best Case:** $O(E)$ (if no relaxation happens in first pass).
-    - **Average Case:** $O(VE)$.
-    - **Worst Case:** $O(VE)$.
-- **Space Complexity:** $O(V)$ to store distances.
+    - **Best Case:** $O(E)$ — Occurs if an early-exit optimization checks whether any distance updates occurred, and the first pass relaxes the edges in topological order (propagating all updates in one step).
+    - **Average Case:** $O(VE)$ — General scenario where paths propagate slowly over multiple iterations.
+    - **Worst Case:** $O(VE)$ — Occurs when the graph structure forces updates to propagate one edge at a time (e.g., a linear chain processed in reverse edge-list order), requiring all $V-1$ sweeps of $E$ edges plus one cycle-detection pass of $O(E)$.
+- **Space Complexity:** $O(V)$ — Storing the 1D distance array `dist` of size $V$. The input edge representation is outside of this auxiliary calculation.
 
 #### Example
 A-B (1), B-C (3), A-C (10). Source A.
@@ -516,12 +592,12 @@ FLOYD-WARSHALL(graph):
 
 #### Complexity Analysis
 - **Loops:**
-    - Triple nested loops, each running $n$ times.
+    - Triple nested loops: Outer loop iterates over intermediate vertices $k$ ($V$ times), middle loop over sources $i$ ($V$ times), and inner loop over destinations $j$ ($V$ times).
 - **Overall Complexity:**
-    - **Best Case:** $O(V^3)$.
-    - **Average Case:** $O(V^3)$.
-    - **Worst Case:** $O(V^3)$.
-- **Space Complexity:** $O(V^2)$ to store the distance matrix.
+    - **Best Case:** $O(V^3)$ — The algorithm consists of three static, unconditional loops that must execute fully to compute all paths, regardless of input configurations.
+    - **Average Case:** $O(V^3)$ — Expected time over any standard input graph.
+    - **Worst Case:** $O(V^3)$ — Worst-case execution matches the best case, running exactly $V^3$ basic matrix update steps.
+- **Space Complexity:** $O(V^2)$ — Storing the $V \times V$ dynamic programming table (`dist`) representing the shortest path distances between all vertex pairs.
 
 #### Example
 Graph Matrix (3x3):
@@ -614,13 +690,13 @@ BFS(G, start):
 
 #### Complexity Analysis
 - **Loops:**
-  - Queue loop: Runs $V$ times (once per vertex).
-  - Neighbor exploration loop: Runs $E$ times (or $2E$ for undirected graph) total across all dequeue steps.
+  - Queue loop: Dequeues and processes each of the $V$ reachable vertices exactly once.
+  - Neighbor exploration loop: Runs over the adjacency list of each vertex, visiting all $E$ edges in total (or $2E$ for undirected graphs).
 - **Overall Complexity:**
-  - **Best Case:** $O(V + E)$
-  - **Average Case:** $O(V + E)$
-  - **Worst Case:** $O(V + E)$
-- **Space Complexity:** $O(V)$ for queue and visited array.
+  - **Best Case:** $O(V + E)$ — When all nodes and edges are reachable and traversed.
+  - **Average Case:** $O(V + E)$ — Traversal time over typical graphs where nodes are distributed.
+  - **Worst Case:** $O(V + E)$ — Occurs when the graph is fully connected; all vertices and edges must be checked to complete the search.
+- **Space Complexity:** $O(V)$ — Required for the queue tracking the search frontier (which can contain up to $V$ nodes in the worst case) and the `visited` boolean tracking array.
 
 ---
 
@@ -689,13 +765,13 @@ DFS-VISIT(G, u, visited):
 
 #### Complexity Analysis
 - **Loops:**
-  - Component search loop: Runs $V$ times.
-  - Neighbor traversal loop: Runs $E$ times in total.
+  - Component search loop: Runs $V$ times to check each vertex for unvisited components.
+  - Neighbor traversal loop: Traverses the adjacency list for each vertex, visiting all $E$ edges.
 - **Overall Complexity:**
-  - **Best Case:** $O(V + E)$
-  - **Average Case:** $O(V + E)$
-  - **Worst Case:** $O(V + E)$
-- **Space Complexity:** $O(V)$ auxiliary space for recursive call stack.
+  - **Best Case:** $O(V + E)$ — Standard traversal over all connected nodes and edges.
+  - **Average Case:** $O(V + E)$ — Expected behavior for graph connectivity scans.
+  - **Worst Case:** $O(V + E)$ — Traversal through dense graphs where every vertex and edge must be processed.
+- **Space Complexity:** $O(V)$ — Storing the `visited` array ($O(V)$) and the recursive call stack space, which can reach $O(V)$ depth in the worst case (e.g., a linear graph structure).
 
 ---
 
@@ -790,14 +866,14 @@ TOPOLOGICAL-SORT-KAHN(G):
 
 #### Complexity Analysis
 - **Loops:**
-  - Indegree setup loop: $O(V + E)$
-  - Main loop: $V$ iterations.
-  - Decrement loop: $E$ total.
+  - Indegree setup loop: $O(V + E)$ to calculate the initial in-degree of all vertices by traversing the graph.
+  - Main loop: Runs $V$ times to process each vertex.
+  - Decrement loop: Runs $E$ times in total to decrement the in-degree of neighbors.
 - **Overall Complexity:**
-  - **Best Case:** $O(V + E)$
-  - **Average Case:** $O(V + E)$
-  - **Worst Case:** $O(V + E)$
-- **Space Complexity:** $O(V)$ for indegrees array and queue.
+  - **Best Case:** $O(V + E)$ — Processes all dependencies in a Directed Acyclic Graph (DAG) in linear time.
+  - **Average Case:** $O(V + E)$ — Expected sorting time across DAG structures.
+  - **Worst Case:** $O(V + E)$ — Runs to completion or detects a cycle, checking all vertices and edges.
+- **Space Complexity:** $O(V)$ — Storing the `inDegree` array ($O(V)$), the queue ($O(V)$), and the final sorted `order` array ($O(V)$).
 
 ---
 
@@ -870,13 +946,13 @@ BUBBLE-SORT(A):
 
 #### Complexity Analysis
 - **Loops:**
-  - Outer loop: Runs $N-1$ times.
-  - Inner loop: Runs $N-i-1$ times.
+  - Outer loop: Performs up to $N-1$ passes over the array.
+  - Inner loop: Compares adjacent elements, running $N-i-1$ times for the $i$-th pass.
 - **Overall Complexity:**
-  - **Best Case:** $O(N)$ (Already sorted list).
-  - **Average Case:** $O(N^2)$
-  - **Worst Case:** $O(N^2)$ (Reverse sorted list).
-- **Space Complexity:** $O(1)$ auxiliary space.
+  - **Best Case:** $O(N)$ — Occurs when the input array is already sorted. The inner loop makes $N-1$ comparisons, detects that no swaps were made, and triggers the early exit optimization.
+  - **Average Case:** $O(N^2)$ — Expected execution for randomly ordered arrays, requiring $\approx \frac{N(N-1)}{4}$ comparisons and swaps.
+  - **Worst Case:** $O(N^2)$ — Occurs when the array is sorted in reverse order, requiring $\frac{N(N-1)}{2}$ comparisons and swaps as elements must bubble all the way to their destination.
+- **Space Complexity:** $O(1)$ — Performs sorting entirely in-place, requiring only a single boolean flag `swapped` and temporary swap variables.
 
 ---
 
@@ -936,13 +1012,13 @@ SELECTION-SORT(A):
 
 #### Complexity Analysis
 - **Loops:**
-  - Outer loop: Runs $N-1$ times.
-  - Inner loop: Runs $N - i - 1$ times.
+  - Outer loop: Runs $N-1$ times to set the boundary for the sorted sub-array.
+  - Inner loop: Scans the remaining $N-i-1$ unsorted elements to find the index of the minimum element.
 - **Overall Complexity:**
-  - **Best Case:** $O(N^2)$
-  - **Average Case:** $O(N^2)$
-  - **Worst Case:** $O(N^2)$
-- **Space Complexity:** $O(1)$ auxiliary space.
+  - **Best Case:** $O(N^2)$ — Even if the array is already sorted, the algorithm has no early exit and always scans the entire unsorted region, performing $\frac{N(N-1)}{2}$ comparisons.
+  - **Average Case:** $O(N^2)$ — Expected execution time for randomly ordered inputs.
+  - **Worst Case:** $O(N^2)$ — Same execution count as the best case, performing $O(N^2)$ comparisons.
+- **Space Complexity:** $O(1)$ — Performs sorting in-place, using only variable track markers for indices.
 
 ---
 
@@ -999,13 +1075,13 @@ INSERTION-SORT(A):
 
 #### Complexity Analysis
 - **Loops:**
-  - Outer loop: Runs $N-1$ times.
-  - Inner loop: Runs up to $i$ times.
+  - Outer loop: Iterates $N-1$ times, choosing `arr[i]` as the key to insert into the sorted region.
+  - Inner loop: Shifts elements in the sorted region `arr[0...i-1]` that are larger than the key to the right.
 - **Overall Complexity:**
-  - **Best Case:** $O(N)$ (Already sorted inputs).
-  - **Average Case:** $O(N^2)$
-  - **Worst Case:** $O(N^2)$ (Reverse sorted inputs).
-- **Space Complexity:** $O(1)$ auxiliary space.
+  - **Best Case:** $O(N)$ — Occurs when the array is already sorted. The inner loop condition `arr[j] > key` fails immediately on the first comparison for every outer iteration, resulting in only $N-1$ comparisons and 0 shifts.
+  - **Average Case:** $O(N^2)$ — Expected complexity on random lists where on average we must shift half of the elements in the sorted sub-array.
+  - **Worst Case:** $O(N^2)$ — Occurs when the input is sorted in reverse order. For each element at index $i$, we must shift all $i$ elements in the sorted sub-array to insert it at index 0, performing $\frac{N(N-1)}{2}$ shifts.
+- **Space Complexity:** $O(1)$ — Performs sorting entirely in-place by shifting elements within the input array.
 
 ---
 
@@ -1107,13 +1183,13 @@ MERGE(A, low, mid, high):
 
 #### Complexity Analysis
 - **Loops:**
-  - Array copy loop: $O(N)$
-  - Array merge pointer updates: $O(N)$
+  - Array copy loop: $O(N)$ total time spent copying elements into temporary `L` and `R` arrays.
+  - Array merge pointer updates: $O(N)$ total comparisons and pointer steps to merge the sub-arrays.
 - **Overall Complexity:**
-  - **Best Case:** $O(N \log N)$
-  - **Average Case:** $O(N \log N)$
-  - **Worst Case:** $O(N \log N)$
-- **Space Complexity:** $O(N)$ auxiliary space for buffers.
+  - **Best Case:** $O(N \log N)$ — The array is split into two halves recursively ($\log N$ levels of recursion), and each level requires $O(N)$ time to merge, regardless of element order.
+  - **Average Case:** $O(N \log N)$ — Expected behavior over random configurations.
+  - **Worst Case:** $O(N \log N)$ — Splitting and merging execution paths are independent of initial array state.
+- **Space Complexity:** $O(N)$ — Required to allocate temporary helper arrays `L` and `R` of size $N$ during the merge steps. (Also requires $O(\log N)$ stack space for the recursion).
 
 ---
 
@@ -1193,14 +1269,14 @@ COUNTING-SORT(A):
 
 #### Complexity Analysis
 - **Loops:**
-  - Count frequency: Runs $N$ times.
-  - Prefix sum: Runs $K$ times.
-  - Build output: Runs $N$ times.
+  - Count frequency: Iterates through the input array of size $N$ once to build frequency counts.
+  - Prefix sum: Iterates through the `count` array of size $K$ to compute prefix sums.
+  - Build output: Scans the input array of size $N$ from right to left to construct the sorted array.
 - **Overall Complexity:**
-  - **Best Case:** $O(N + K)$
-  - **Average Case:** $O(N + K)$
-  - **Worst Case:** $O(N + K)$
-- **Space Complexity:** $O(N + K)$ space for count and output arrays.
+  - **Best Case:** $O(N + K)$ — The algorithm performs fixed sequential passes over the input array and counting buckets.
+  - **Average Case:** $O(N + K)$ — Expected complexity over all random distributions of inputs.
+  - **Worst Case:** $O(N + K)$ — The steps executed are entirely determined by input size $N$ and range $K$, running independently of element values.
+- **Space Complexity:** $O(N + K)$ — Requires $O(K)$ auxiliary space for the `count` frequency array and $O(N)$ auxiliary space for the `output` array.
 
 ---
 
@@ -1269,13 +1345,13 @@ RADIX-SORT(A, d):
 
 #### Complexity Analysis
 - **Loops:**
-  - Digit loop: Runs $D$ times.
-  - Subroutine sort: $O(N + K)$ per iteration (where $K = 10$).
+  - Digit loop: Iterates $D$ times (where $D$ is the number of digits in the maximum element).
+  - Subroutine sort: Executes Counting Sort stably in each digit pass, taking $O(N + K)$ time (where base $K = 10$ for decimal numbers).
 - **Overall Complexity:**
-  - **Best Case:** $O(D \cdot (N + K))$
-  - **Average Case:** $O(D \cdot (N + K))$
-  - **Worst Case:** $O(D \cdot (N + K))$
-- **Space Complexity:** $O(N + K)$ space for counting sort helper arrays.
+  - **Best Case:** $O(D \cdot (N + K))$ — The algorithm performs fixed Counting Sort passes for all $D$ digit positions.
+  - **Average Case:** $O(D \cdot (N + K))$ — Standard execution time over average data.
+  - **Worst Case:** $O(D \cdot (N + K))$ — Determined purely by the number of digits $D$, value range base $K$, and array size $N$, regardless of the sorting state of the elements.
+- **Space Complexity:** $O(N + K)$ — Requires $O(N)$ space for the dynamic output buffer and $O(K)$ space for digit frequency counts during counting sort subroutine execution.
 
 ---
 

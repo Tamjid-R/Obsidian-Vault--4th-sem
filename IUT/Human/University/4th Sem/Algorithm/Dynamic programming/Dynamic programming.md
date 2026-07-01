@@ -211,10 +211,10 @@ int countWaysToClimb(int n) {
   * Iterative loop runs $N - 1$ times.
   * Inside the loop, it performs $O(1)$ additions.
 * **Overall Complexity:**
-  * **Best Case:** $O(N)$
-  * **Average Case:** $O(N)$
-  * **Worst Case:** $O(N)$
-* **Space Complexity:** $O(1)$ space for optimized version (only tracking previous two states), or $O(N)$ if using full `dp` array.
+  * **Best Case:** $O(N)$ — The loop always runs exactly $N-1$ times to compute the $N$-th stair value from the base cases.
+  * **Average Case:** $O(N)$ — Expected linear time complexity.
+  * **Worst Case:** $O(N)$ — Performs exactly $N-1$ additions, guaranteeing linear execution time.
+* **Space Complexity:** $O(1)$ space for the optimized version (only tracking the previous two states in rolling variables), or $O(N)$ auxiliary space if storing the entire `dp` array of size $N + 1$ (along with $O(N)$ stack space if recursion is used).
 
 ---
 
@@ -281,13 +281,13 @@ int countWaysKSteps(int n, int k) {
 
 #### Complexity Analysis
 * **Loops:**
-  * Outer loop runs $N$ times.
-  * Inner loop runs $K$ times for each outer iteration.
+  * Outer loop runs $N$ times to compute energy costs for each step.
+  * Inner loop runs $K$ times to evaluate all possible jumps (1 to $K$) at the current step.
 * **Overall Complexity:**
-  * **Best Case:** $O(N \cdot K)$
-  * **Average Case:** $O(N \cdot K)$
-  * **Worst Case:** $O(N \cdot K)$
-* **Space Complexity:** $O(N)$ to store the `dp` array.
+  * **Best Case:** $O(N \cdot K)$ — Even in the best case, we check all $K$ preceding steps for every stair.
+  * **Average Case:** $O(N \cdot K)$ — Expected time complexity over arbitrary steps.
+  * **Worst Case:** $O(N \cdot K)$ — Evaluates exactly $K$ lookback states for each of the $N$ steps.
+* **Space Complexity:** $O(N)$ — Required to store the cost array of size $N$ representing subproblems.
 
 ---
 
@@ -359,13 +359,13 @@ int knapsack01(int W, const vector<int>& wt, const vector<int>& val, int n) {
 
 #### Complexity Analysis
 * **Loops:**
-  * Outer loop runs $N$ times.
-  * Inner loop runs $W$ times for each item.
+  * Outer loop runs $N$ times to iterate through the available items.
+  * Inner loop runs $W$ times to evaluate all capacity subproblems from $1$ to $W$.
 * **Overall Complexity:**
-  * **Best Case:** $O(N \cdot W)$
-  * **Average Case:** $O(N \cdot W)$
-  * **Worst Case:** $O(N \cdot W)$
-* **Space Complexity:** $O(N \cdot W)$ to store the 2D array. Can be space-optimized to $O(W)$ by keeping only the previous row.
+  * **Best Case:** $O(N \cdot W)$ — The tabulation table of size $(N+1) \times (W+1)$ must be filled completely.
+  * **Average Case:** $O(N \cdot W)$ — Expected time to check inclusion/exclusion decisions across all states.
+  * **Worst Case:** $O(N \cdot W)$ — Computes and compares results for all capacity-item pairs.
+* **Space Complexity:** $O(N \cdot W)$ — Auxiliary space for the 2D dynamic programming table (which can be optimized to $O(W)$ using a 1D rolling array since only the previous row's values are needed).
 
 #### 0/1 Knapsack DP Tables Comparison
 Given a knapsack of capacity $W = 4$ and three items: Item 1 ($wt=1, val=15$), Item 2 ($wt=2, val=20$), and Item 3 ($wt=3, val=30$).
@@ -464,13 +464,13 @@ int getLCS(string S1, string S2) {
 
 #### Complexity Analysis
 * **Loops:**
-  * Outer loop runs $M$ times.
-  * Inner loop runs $N$ times.
+  * Outer loop runs $M$ times (length of the first string).
+  * Inner loop runs $N$ times (length of the second string).
 * **Overall Complexity:**
-  * **Best Case:** $O(M \cdot N)$
-  * **Average Case:** $O(M \cdot N)$
-  * **Worst Case:** $O(M \cdot N)$
-* **Space Complexity:** $O(M \cdot N)$ for storing the DP table. Can be space-optimized to $O(N)$ since only the previous row is needed.
+  * **Best Case:** $O(M \cdot N)$ — Complete evaluation of the grid must occur to find the longest subsequence.
+  * **Average Case:** $O(M \cdot N)$ — Expected time for matching random character alignments.
+  * **Worst Case:** $O(M \cdot N)$ — Worst-case path scans all $(M+1) \times (N+1)$ state transitions.
+* **Space Complexity:** $O(M \cdot N)$ — Auxiliary space required for the 2D `dp` table. Can be optimized to $O(N)$ space by maintaining only the current and previous rows.
 
 #### LCS DP Tables Comparison
 Given two strings: $S1 = \text{"AET"}$ and $S2 = \text{"AFT"}$.
@@ -557,13 +557,13 @@ MIN-COINS(Coins, Sum):
 
 ### 5. Complexity Analysis
 * **Loops:**
-  * Outer loop runs $S$ times (where $S = \text{Sum}$).
-  * Inner loop runs $C$ times (where $C = \text{number of coin denominations}$).
+  * Outer loop runs $S$ times (where $S$ is the target sum).
+  * Inner loop runs $C$ times (where $C$ is the number of coin denominations).
 * **Overall Complexity:**
-  * **Best Case:** $O(S \cdot C)$
-  * **Average Case:** $O(S \cdot C)$
-  * **Worst Case:** $O(S \cdot C)$
-* **Space Complexity:** $O(S)$ to hold the `dp` array.
+  * **Best Case:** $O(S \cdot C)$ — Evaluates all coin choices for every sum value from $1$ to $S$.
+  * **Average Case:** $O(S \cdot C)$ — Expected time over average coin-sum state lookups.
+  * **Worst Case:** $O(S \cdot C)$ — Explores all options to find the absolute minimum coins for target sum $S$.
+* **Space Complexity:** $O(S)$ — Auxiliary space to store the 1D `dp` table of size $S + 1$.
 
 ---
 
@@ -606,12 +606,13 @@ FRIENDS-PAIRING(N):
 
 ### 4. Complexity Analysis
 * **Loops:**
-  * Loop runs $N - 1$ times, with $O(1)$ operations inside.
+  * Loop runs $N - 1$ times to compute pairs for up to $N$ friends.
+  * Inside the loop, it performs $O(1)$ constant-time additions and multiplications.
 * **Overall Complexity:**
-  * **Best Case:** $O(N)$
-  * **Average Case:** $O(N)$
-  * **Worst Case:** $O(N)$
-* **Space Complexity:** $O(N)$ to hold the `dp` table. Can be optimized to $O(1)$ by using variables `prev1` and `prev2`.
+  * **Best Case:** $O(N)$ — Loop runs exactly $N-1$ times.
+  * **Average Case:** $O(N)$ — Expected linear time execution.
+  * **Worst Case:** $O(N)$ — Performs $N-1$ constant-time updates.
+* **Space Complexity:** $O(N)$ — Auxiliary space for the 1D `dp` array. Can be optimized to $O(1)$ by using rolling variables (`prev1` and `prev2`) since only the last two results are referenced.
 
 ---
 
@@ -652,8 +653,8 @@ CLIMB-3-STEPS(N):
 * **Recursive Alternatives for Loops:** The iterative loop `for (int i = 3; i <= n; i++)` is replaced by the recursive call stack traversing from $N$ down to base cases.
 
 ### 4. Complexity Analysis
-* **Time Complexity:** $O(N)$
-* **Space Complexity:** $O(N)$ (can be optimized to $O(1)$ by using rolling variables)
+* **Time Complexity:** $O(N)$ — The loop runs from $3$ to $N$ to evaluate all step counts linearly.
+* **Space Complexity:** $O(N)$ — Requires a 1D `dp` array of size $N + 1$ (can be optimized to $O(1)$ by keeping track of only the previous three step states in rolling variables).
 
 ---
 
@@ -676,8 +677,8 @@ Test your understanding of dynamic programming by solving these classic problems
   * `dp[0] = money[0]` (Only one house $\to$ rob it)
   * `dp[1] = max(money[0], money[1])` (Two houses $\to$ rob the richer one)
 * **Complexity:**
-  * **Time Complexity:** $O(N)$ because we iterate through the list of houses exactly once.
-  * **Space Complexity:** $O(N)$ to store the DP table (can be optimized to $O(1)$ by keeping track of only the previous two outcomes).
+  * **Time Complexity:** $O(N)$ — We iterate through the list of $N$ houses exactly once to fill the tabulation array.
+  * **Space Complexity:** $O(N)$ — Required to store the 1D `dp` array (can be optimized to $O(1)$ by keeping track of only the previous two house robber choices in variables).
 
 ##### Pseudocode (Tabulation)
 ```text
@@ -773,8 +774,8 @@ PARTITION-EQUAL-SUBSET-SUM(nums, N):
 * **Base Case:**
   * `dp[i] = 1` for all $i$ (Initially, every single element represents an increasing subsequence of length 1)
 * **Complexity:**
-  * **Time Complexity:** $O(N^2)$ because for each element we scan all previous elements. (Note: An $O(N \log N)$ approach is possible using binary search).
-  * **Space Complexity:** $O(N)$ to store the `dp` array.
+  * **Time Complexity:** $O(N^2)$ — For each element at index $i$, we scan all previous elements at index $j < i$ to check for increasing elements and update maximum subsequence paths. (An optimized $O(N \log N)$ approach is possible using binary search with patience sorting).
+  * **Space Complexity:** $O(N)$ — Required to store the 1D `dp` array representing LIS lengths.
 
 ##### Pseudocode (Tabulation)
 ```text
@@ -809,8 +810,8 @@ LIS(arr, N):
   * `dp[i][0] = i` (Converting string of length $i$ to empty string requires $i$ deletions)
   * `dp[0][j] = j` (Converting empty string to string of length $j$ requires $j$ insertions)
 * **Complexity:**
-  * **Time Complexity:** $O(M \cdot N)$ where $M$ and $N$ are the lengths of `word1` and `word2`.
-  * **Space Complexity:** $O(M \cdot N)$ to store the 2D operations table (can be optimized to $O(N)$).
+  * **Time Complexity:** $O(M \cdot N)$ — Requires filling a 2D table of size $(M+1) \times (N+1)$ where $M$ and $N$ are the lengths of the two words.
+  * **Space Complexity:** $O(M \cdot N)$ — Auxiliary space to store the 2D operations table (can be optimized to $O(N)$ by keeping track of only the previous row's operation costs).
 
 ##### Pseudocode (Tabulation)
 ```text
