@@ -44,8 +44,8 @@
     "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::3": 75,
     "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::4": 155,
     "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::5": 130,
-    "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::6": 75,
-    "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::7": 75,
+    "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::6": 124,
+    "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::7": 118,
     "C1.md::LAN|Attache to|hosts|prefix|mask|netwrk|first|last|broadcast::8": 75
   },
   "minColumnWidth": 50
