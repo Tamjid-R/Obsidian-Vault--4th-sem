@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 283.50271224975586,
-    "collapsed": true
+    "width": 283.50271224975586
   },
   "right": {
     "id": "76e1f4b725dcfc79",
@@ -210,6 +209,12 @@
   },
   "active": "3975dd6de0a29a97",
   "lastOpenFiles": [
+    "Human/University/4th Sem/DCN/Chapter-5.md",
+    "Human/University/4th Sem/DCN/Chapter_4_v8.2.pptx.pdf",
+    "Human/University/4th Sem/DCN/DHCP-ipv6.md",
+    "Human/University/4th Sem/DCN/Digital-Transmission.md",
+    "Human/University/4th Sem/DCN/ch4_answers (1).md",
+    "Human/University/4th Sem/DCN/Data Centre Networks.md",
     "Human/University/4th Sem/Algorithm/All Algorithms folder.md",
     "Human/University/4th Sem/Algorithm/Dynamic programming/Dynamic programming.md",
     "C1.md",
@@ -217,9 +222,7 @@
     "Human/University/4th Sem/DCN/Application Layer.md",
     "Human/University/4th Sem/DCN/Chapter 2 summary.md",
     "Human/University/4th Sem/DCN/DNS.md",
-    "Human/University/4th Sem/DCN/Data Centre Networks.md",
     "Human/University/4th Sem/DCN/Computer Networking A Top-Down Approach, 8th Edition by James F. Kurose, Keith W. Ross-Pearson.pdf",
-    "Human/University/4th Sem/DCN/Chapter_4_v8.2.pptx.pdf",
     "Human/University/4th Sem/DCN/05. Introduction & IP.pdf",
     "Human/University/4th Sem/DCN/04. Transport Layer.pdf",
     "Human/University/4th Sem/DCN/03. Explanation_of_HTTP.pdf",
@@ -244,11 +247,6 @@
     "Human/University/4th Sem/DCN/Session Layer.md",
     "Human/University/4th Sem/DCN/Presentation Layer.md",
     "Human/University/4th Sem/DCN/Physical Layer.md",
-    "Human/University/4th Sem/DCN/Link Layer.md",
-    "Human/University/4th Sem/DCN/IMAP.md",
-    "Human/University/4th Sem/Ethics/Ethics summary note.md",
-    "Human/University/4th Sem/DCN/Access Networks.md",
-    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
-    "Application Layer.md"
+    "Human/University/4th Sem/DCN/Link Layer.md"
   ]
 }
