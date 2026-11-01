@@ -67,9 +67,45 @@ When you're iterating, you need to know **when to stop**. You use errors as your
 
 $$\boxed{|\epsilon_a| = \left| \frac{x_m^{\text{new}} - x_m^{\text{old}}}{x_m^{\text{new}}} \right| \times 100\%}$$
 
+> **Note:** $x_m$ here is the **same midpoint** from the Bisection Method — $x_m = \frac{x_l + x_u}{2}$, where:
+> - $x_l$ = **lower bound** of the current bracket (the left edge of your search window)
+> - $x_u$ = **upper bound** of the current bracket (the right edge of your search window)
+> - $x_m$ = the **midpoint** between them = your current best guess for the root
+>
+> $x_m^{\text{new}}$ is the midpoint from the *current* iteration, and $x_m^{\text{old}}$ is the midpoint from the *previous* iteration. You're just measuring how much your guess shifted between two consecutive steps.
+
 - Compares the **current estimate to the previous estimate**.
 - You don't need to know the true answer — you only need two consecutive estimates.
 - When this number is small, your answer isn't changing much → you're converging.
+
+#### How Do We Use It?
+
+You compute $|\epsilon_a|$ **after every iteration** and compare it to your tolerance $\epsilon_s$:
+- If $|\epsilon_a| > \epsilon_s$ → **keep going**, the answer is still changing too much
+- If $|\epsilon_a| \leq \epsilon_s$ → **stop**, your answer is stable enough
+
+#### Mini Example — Using the $x^3 = 20$ problem
+
+Recall from Worked Example 1 ($f(x) = x^3 - 20 = 0$, bracket $[1, 4]$):
+
+| Iteration | $x_m$ (midpoint / current guess) |
+|:---:|:---:|
+| 1 | $x_m^{\text{old}} = 2.5$ |
+| 2 | $x_m^{\text{new}} = 3.25$ |
+
+Plug into the formula:
+
+$$|\epsilon_a| = \left| \frac{3.25 - 2.5}{3.25} \right| \times 100\% = \left| \frac{0.75}{3.25} \right| \times 100\% \approx 23.08\%$$
+
+**What this tells you:** Your guess moved by 23% of its current value between iteration 1 and 2. That's a big jump — the answer is still changing a lot, so you keep iterating.
+
+After the next iteration, $x_m$ goes from $3.25$ to $2.875$:
+
+$$|\epsilon_a| = \left| \frac{2.875 - 3.25}{2.875} \right| \times 100\% \approx 13.04\%$$
+
+Still too large. You keep going until $|\epsilon_a|$ drops below your chosen $\epsilon_s$ (e.g., $5\%$ or $0.5\%$).
+
+> **Key insight:** You never need to know the true answer ($\sqrt[3]{20} = 2.7144...$) to use this formula. The formula is *self-referential* — it only looks at how much your own guesses are changing.
 
 ### 3.2 True Error and Relative True Error
 
