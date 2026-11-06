@@ -115,11 +115,58 @@ $$\epsilon_t = \frac{E_t}{\text{True value}} \times 100\%$$
 - Use this only when you **already know** the true answer (e.g., in textbook verification).
 - In real-world problems, you never know the true value — that's why you use $|\epsilon_a|$ instead.
 
-### 3.3 Stopping Criteria
-You stop iterating when:
-$$|\epsilon_a| \leq \epsilon_s \quad \text{(user-defined tolerance)}$$
+### 3.3 Stopping Criteria & Tolerance ($\epsilon_s$)
 
-Or when you've hit `max_iter` iterations (a safety limit to avoid infinite loops).
+In numerical iterations, you stop calculating when:
+$$\boxed{|\epsilon_a| \leq \epsilon_s}$$
+
+where:
+- $|\epsilon_a|$ is the **percentage absolute relative approximate error** computed at the current iteration:
+  $$|\epsilon_a| = \left| \frac{x^{\text{new}} - x^{\text{old}}}{x^{\text{new}}} \right| \times 100\%$$
+- $\epsilon_s$ is the **pre-specified tolerance** (stopping criterion threshold), expressed as a percentage.
+- Alternatively, iterations terminate if the safety limit `max_iter` is exceeded to prevent infinite looping.
+
+#### What is the Tolerance ($\epsilon_s$)?
+The tolerance $\epsilon_s$ is a **pre-set numerical boundary** defining the acceptable margin of uncertainty. It answers the question: *"How small must the relative change between consecutive approximations become before the solution is considered converged?"*
+- It is determined **before** running the algorithm, either directly by engineering requirements (e.g., $\epsilon_s = 1\%$, $\epsilon_s = 0.1\%$) or derived mathematically using **Scarborough's Criterion** to guarantee a specific number of correct significant figures ($m$ digits):
+  $$\epsilon_s = 0.5 \times 10^{2-m}\%$$
+
+#### Does the Tolerance ($\epsilon_s$) Stay the Same?
+**Yes, the tolerance $\epsilon_s$ remains strictly constant throughout all iterations.**
+
+It does **not** change from step to step:
+1. **$\epsilon_s$ is a fixed benchmark (the target):** It represents the fixed finish line set prior to iteration 1.
+2. **$|\epsilon_a|$ is a dynamic variable (the measurement):** Unlike $\epsilon_s$, the approximate error $|\epsilon_a|$ is recomputed after every single iteration. As iterations progress and the estimates converge towards the true root, $|\epsilon_a|$ typically decreases.
+3. **Comparison at each step:** At iteration $i$, the algorithm evaluates the check `if |ε_a| <= ε_s`. The threshold $\epsilon_s$ on the right-hand side stays constant, while $|\epsilon_a|$ on the left-hand side drops until the inequality is satisfied.
+
+| Property | Tolerance ($\epsilon_s$) | Absolute Relative Approx. Error ($|\epsilon_a|$) |
+|---|---|---|
+| **Value Nature** | **Constant** (Fixed throughout all iterations) | **Dynamic** (Recalculated every iteration) |
+| **Origin** | Set a priori by the user / specifications | Computed from current and previous estimates ($x^{\text{new}}, x^{\text{old}}$) |
+| **Role** | Acceptance threshold / stopping criterion | Progress indicator / error quantification |
+| **Equation Side** | Right-hand side of $|\epsilon_a| \leq \epsilon_s$ | Left-hand side of $|\epsilon_a| \leq \epsilon_s$ |
+
+#### Example: Fixed Tolerance vs. Evolving Error
+Consider finding the root of $f(x) = x^2 - 5 = 0$ using bisection on $[2, 3]$ with a target of **2 significant digits**.
+
+1. **Calculate Fixed Tolerance ($\epsilon_s$):**
+   Using Scarborough's Criterion for $m = 2$:
+   $$\epsilon_s = 0.5 \times 10^{2-2}\% = 0.5 \times 10^0\% = 0.5\%$$
+   This tolerance $\epsilon_s = 0.5\%$ remains **fixed** for every iteration.
+
+2. **Iteration Tracking Table:**
+
+| Iteration ($i$) | $x^{\text{old}}$ | $x^{\text{new}}$ | $|\epsilon_a| = \left|\frac{x^{\text{new}}-x^{\text{old}}}{x^{\text{new}}}\right|\times 100\%$ | Tolerance $\epsilon_s$ | Status ($|\epsilon_a| \leq \epsilon_s$) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | — | 2.5000 | — | $0.5\%$ | Initial step (N/A) |
+| 2 | 2.5000 | 2.2500 | $11.11\%$ | $\mathbf{0.5\%}$ | $11.11\% > 0.5\%$ → Continue |
+| 3 | 2.2500 | 2.1250 | $5.88\%$ | $\mathbf{0.5\%}$ | $5.88\% > 0.5\%$ → Continue |
+| 4 | 2.1250 | 2.1875 | $2.86\%$ | $\mathbf{0.5\%}$ | $2.86\% > 0.5\%$ → Continue |
+| 5 | 2.1875 | 2.2188 | $1.41\%$ | $\mathbf{0.5\%}$ | $1.41\% > 0.5\%$ → Continue |
+| 6 | 2.2188 | 2.2344 | $0.70\%$ | $\mathbf{0.5\%}$ | $0.70\% > 0.5\%$ → Continue |
+| 7 | 2.2344 | 2.2422 | $\mathbf{0.35\%}$ | $\mathbf{0.5\%}$ | $\mathbf{0.35\% \leq 0.5\% \implies \text{STOP}}$ |
+
+As observed, $\epsilon_s$ stayed at $0.5\%$ across all 7 iterations, while $|\epsilon_a|$ updated dynamically from $11.11\% \to 5.88\% \to \dots \to 0.35\%$, at which point the stopping criterion was met.
 
 ### 3.4 Significant Digits Criterion (Scarborough's Criterion)
 
