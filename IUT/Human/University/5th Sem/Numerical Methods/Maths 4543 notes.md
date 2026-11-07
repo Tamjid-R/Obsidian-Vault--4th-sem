@@ -549,4 +549,3 @@ What method is most likely being used, and why? How many more iterations are nee
 ---
 
 *Related notes: [[Numerical Methods Overview]] · [[Error Analysis]] · [[Root Finding Methods]]*
-f

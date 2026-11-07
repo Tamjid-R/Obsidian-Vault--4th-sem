@@ -64,7 +64,8 @@
               "title": "Terminal: zsh"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -253,10 +254,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c3a4e9d834c9bd38",
+  "active": "c625a652d465ebc7",
   "lastOpenFiles": [
-    "Root Finding Methods.md",
     "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md",
+    "Human/University/5th Sem/Server Programming/Lecture-2.pdf",
+    "Human/University/5th Sem/Server Programming/Unconfirmed 766188.crdownload",
+    "Human/University/5th Sem/Server Programming/Lecture-1.pdf",
+    "Human/University/5th Sem/Server Programming/Unconfirmed 589881.crdownload",
+    "Human/University/5th Sem/Server Programming",
+    "Root Finding Methods.md",
     "Error Analysis.md",
     "Human/University/4th Sem/DCN/ch4_answers (1).md",
     "Human/University/4th Sem/DCN/Chapter-5.md",
@@ -279,11 +285,6 @@
     "Human/University/4th Sem/DCN/Network Layer.md",
     "Human/University/4th Sem/DCN/Transport Layer.md",
     "Pasted image 20260621212425.png",
-    "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test",
-    "Human/University/4th Sem/Algorithm/Dynamic programming/dp_test.cpp",
-    "Human/University/4th Sem/Algorithm/Dynamic programming",
-    "Human/University/4th Sem/DCN/Chapter 2.pdf",
-    "Human/University/4th Sem/DCN/Chapter 1.pdf",
     "Encapsulation.md",
     "Bottleneck Link.md",
     "Pasted image 20260616214817.png",
@@ -293,7 +294,6 @@
     "GEMINI.md",
     "Human/University/4th Sem/DCN/Multiplexing.md",
     "Human/University/4th Sem/DCN/SMTP.md",
-    "Human/University/4th Sem/DCN/Session Layer.md",
-    "Human/University/4th Sem/DCN/Presentation Layer.md"
+    "Human/University/4th Sem/DCN/Session Layer.md"
   ]
 }
