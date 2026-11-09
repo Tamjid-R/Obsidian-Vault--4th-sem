@@ -247,13 +247,13 @@ A **URL (Uniform Resource Locator)** tells the browser what protocol to speak, w
 https://www.example.com:8080/products/catalog?category=laptops&sort=price#specs
 └─┬─┘   └──────┬──────┘ └──┬─┘└───────┬────────┘ └───────────┬──────────┘ └──┬──┘
   │            │           │          │                       │              │
-Scheme      Hostname      Port       Path                Query String     Fragment
+Scheme      Hostname      Port       Path                Query String     Fragment             
 (Protocol)  (Domain/IP)   (Target)  (Resource location)  (Filters/Params) (Page Anchor)
 ```
 
 1.  **Scheme (`https://`):** The protocol. `http://` is plain text; `https://` is encrypted with TLS/SSL.
 2.  **Hostname (`www.example.com`):** The human-friendly name mapped to the server's IP via DNS.
-3.  **Port (`:8080`):** The target port. If omitted, browsers automatically use port `80` (for HTTP) or port `443` (for HTTPS).
+3.  **Port (`:8080`):** The target port. If omitted, browsers automatically use port `80` (for HTTP) or port `4 43` (for HTTPS).
 4.  **Path (`/products/catalog`):** Specifies the resource that the client wants.
 5.  **Query Parameter (`?category=laptops&sort=price`):** Optional search filters or modifiers, formatted as `key=value` pairs separated by `&`.
 6.  **Fragment (`#specs`):** Jumps to a specific section on the web page.  
