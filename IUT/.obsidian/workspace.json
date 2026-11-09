@@ -77,9 +77,33 @@
               "icon": "lucide-file",
               "title": "Server Programming Notes"
             }
+          },
+          {
+            "id": "cfe7bb028bebbb82",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Human/University/5th Sem/Server Programming/Lecture-1.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Lecture-1"
+            }
+          },
+          {
+            "id": "188478f477465332",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Human/University/5th Sem/Server Programming/Lecture-2.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Lecture-2"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -268,13 +292,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f59ebfc4009cbe03",
+  "active": "cfe7bb028bebbb82",
   "lastOpenFiles": [
     "Human/University/5th Sem/Server Programming/Server Programming Notes.md",
-    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md",
-    "Human/University/5th Sem/Server Programming/Lecture-2.pdf",
-    "Human/University/5th Sem/Server Programming/Unconfirmed 766188.crdownload",
     "Human/University/5th Sem/Server Programming/Lecture-1.pdf",
+    "Human/University/5th Sem/Server Programming/Lecture-2.pdf",
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md",
+    "Human/University/5th Sem/Server Programming/Unconfirmed 766188.crdownload",
     "Human/University/5th Sem/Server Programming/Unconfirmed 589881.crdownload",
     "Human/University/5th Sem/Server Programming",
     "Root Finding Methods.md",
@@ -308,7 +332,6 @@
     "Welcome.md",
     "GEMINI.md",
     "Human/University/4th Sem/DCN/Multiplexing.md",
-    "Human/University/4th Sem/DCN/SMTP.md",
-    "Human/University/4th Sem/DCN/Session Layer.md"
+    "Human/University/4th Sem/DCN/SMTP.md"
   ]
 }
