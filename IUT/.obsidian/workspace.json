@@ -103,7 +103,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -292,7 +292,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "cfe7bb028bebbb82",
+  "active": "f59ebfc4009cbe03",
   "lastOpenFiles": [
     "Human/University/5th Sem/Server Programming/Lecture-1.pdf",
     "Human/University/5th Sem/Server Programming/Server Programming Notes.md",
