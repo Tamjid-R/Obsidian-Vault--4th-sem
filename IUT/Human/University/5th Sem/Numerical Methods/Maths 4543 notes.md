@@ -172,12 +172,12 @@ As observed, $\epsilon_s$ stayed at $0.5\%$ across all 7 iterations, while $|\ep
 
 $$\text{If } |\epsilon_a| \leq 0.5 \times 10^{2-m}\% \text{, then at least } m \text{ significant digits are correct.}$$
 
-| Desired Sig. Digits ($m$) |   Required $   | \epsilon_a | $   |
-| :-----------------------: | :------------: | ---------- | --- |
-|             1             |   $\leq 5\%$   |            |     |
-|             2             |  $\leq 0.5\%$  |            |     |
-|             3             | $\leq 0.05\%$  |            |     |
-|             4             | $\leq 0.005\%$ |            |     |
+| Desired Sig. Digits ($m$) | Required $\lvert \epsilon_a \rvert$ |
+| :-----------------------: | :---------------------------------: |
+|             1             |             $\leq 5\%$              |
+|             2             |            $\leq 0.5\%$             |
+|             3             |            $\leq 0.05\%$            |
+|             4             |           $\leq 0.005\%$            |
 
 ### 🧠 Intuition
 Think of it like a GPS. When the "recalculating" message shows a big reroute — you're still converging. When you see tiny sub-metre adjustments — you've essentially arrived. The $|\epsilon_a|$ is how "big" the recalculation step is. Once it's tiny enough, you declare arrival.
