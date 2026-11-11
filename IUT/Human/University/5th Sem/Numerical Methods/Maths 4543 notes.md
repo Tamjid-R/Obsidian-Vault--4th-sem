@@ -139,12 +139,12 @@ It does **not** change from step to step:
 2. **$|\epsilon_a|$ is a dynamic variable (the measurement):** Unlike $\epsilon_s$, the approximate error $|\epsilon_a|$ is recomputed after every single iteration. As iterations progress and the estimates converge towards the true root, $|\epsilon_a|$ typically decreases.
 3. **Comparison at each step:** At iteration $i$, the algorithm evaluates the check `if |ε_a| <= ε_s`. The threshold $\epsilon_s$ on the right-hand side stays constant, while $|\epsilon_a|$ on the left-hand side drops until the inequality is satisfied.
 
-| Property | Tolerance ($\epsilon_s$) | Absolute Relative Approx. Error ($|\epsilon_a|$) |
+| Property | Tolerance ($\epsilon_s$) | Absolute Relative Approx. Error ($\lvert \epsilon_a \rvert$) |
 |---|---|---|
 | **Value Nature** | **Constant** (Fixed throughout all iterations) | **Dynamic** (Recalculated every iteration) |
 | **Origin** | Set a priori by the user / specifications | Computed from current and previous estimates ($x^{\text{new}}, x^{\text{old}}$) |
 | **Role** | Acceptance threshold / stopping criterion | Progress indicator / error quantification |
-| **Equation Side** | Right-hand side of $|\epsilon_a| \leq \epsilon_s$ | Left-hand side of $|\epsilon_a| \leq \epsilon_s$ |
+| **Equation Side** | Right-hand side of $\lvert \epsilon_a \rvert \leq \epsilon_s$ | Left-hand side of $\lvert \epsilon_a \rvert \leq \epsilon_s$ |
 
 #### Example: Fixed Tolerance vs. Evolving Error
 Consider finding the root of $f(x) = x^2 - 5 = 0$ using bisection on $[2, 3]$ with a target of **2 significant digits**.
@@ -156,15 +156,15 @@ Consider finding the root of $f(x) = x^2 - 5 = 0$ using bisection on $[2, 3]$ wi
 
 2. **Iteration Tracking Table:**
 
-| Iteration ($i$) | $x^{\text{old}}$ | $x^{\text{new}}$ | $|\epsilon_a| = \left|\frac{x^{\text{new}}-x^{\text{old}}}{x^{\text{new}}}\right|\times 100\%$ | Tolerance $\epsilon_s$ | Status ($|\epsilon_a| \leq \epsilon_s$) |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| 1 | — | 2.5000 | — | $0.5\%$ | Initial step (N/A) |
-| 2 | 2.5000 | 2.2500 | $11.11\%$ | $\mathbf{0.5\%}$ | $11.11\% > 0.5\%$ → Continue |
-| 3 | 2.2500 | 2.1250 | $5.88\%$ | $\mathbf{0.5\%}$ | $5.88\% > 0.5\%$ → Continue |
-| 4 | 2.1250 | 2.1875 | $2.86\%$ | $\mathbf{0.5\%}$ | $2.86\% > 0.5\%$ → Continue |
-| 5 | 2.1875 | 2.2188 | $1.41\%$ | $\mathbf{0.5\%}$ | $1.41\% > 0.5\%$ → Continue |
-| 6 | 2.2188 | 2.2344 | $0.70\%$ | $\mathbf{0.5\%}$ | $0.70\% > 0.5\%$ → Continue |
-| 7 | 2.2344 | 2.2422 | $\mathbf{0.35\%}$ | $\mathbf{0.5\%}$ | $\mathbf{0.35\% \leq 0.5\% \implies \text{STOP}}$ |
+| Iteration ($i$) | $x^{\text{old}}$ | $x^{\text{new}}$ | $\lvert \epsilon_a \rvert = \left\lvert \frac{x^{\text{new}}-x^{\text{old}}}{x^{\text{new}}}\right\rvert \times 100\%$ | Tolerance $\epsilon_s$ | Status ($\lvert \epsilon_a \rvert \leq \epsilon_s$) |
+| :-------------: | :--------------: | :--------------: | :--------------------------------------------------------------------------------------------------------------------: | :--------------------: | :-------------------------------------------------: |
+|        1        |        —         |      2.5000      |                                                           —                                                            |        $0.5\%$         |                 Initial step (N/A)                  |
+|        2        |      2.5000      |      2.2500      |                                                       $11.11\%$                                                        |    $\mathbf{0.5\%}$    |            $11.11\% > 0.5\%$ → Continue             |
+|        3        |      2.2500      |      2.1250      |                                                        $5.88\%$                                                        |    $\mathbf{0.5\%}$    |             $5.88\% > 0.5\%$ → Continue             |
+|        4        |      2.1250      |      2.1875      |                                                        $2.86\%$                                                        |    $\mathbf{0.5\%}$    |             $2.86\% > 0.5\%$ → Continue             |
+|        5        |      2.1875      |      2.2188      |                                                        $1.41\%$                                                        |    $\mathbf{0.5\%}$    |             $1.41\% > 0.5\%$ → Continue             |
+|        6        |      2.2188      |      2.2344      |                                                        $0.70\%$                                                        |    $\mathbf{0.5\%}$    |             $0.70\% > 0.5\%$ → Continue             |
+|        7        |      2.2344      |      2.2422      |                                                   $\mathbf{0.35\%}$                                                    |    $\mathbf{0.5\%}$    |  $\mathbf{0.35\% \leq 0.5\% \implies \text{STOP}}$  |
 
 As observed, $\epsilon_s$ stayed at $0.5\%$ across all 7 iterations, while $|\epsilon_a|$ updated dynamically from $11.11\% \to 5.88\% \to \dots \to 0.35\%$, at which point the stopping criterion was met.
 
@@ -291,7 +291,7 @@ $$f(1) \cdot f(4) = (-19)(44) = -836 < 0 \quad ✅ \text{ Valid bracket!}$$
 | $x_l$ | 1 |
 | $x_u$ | 4 |
 | $x_m$ | $\frac{1 + 4}{2} = 2.5$ |
-| $|\epsilon_a|$ | N/A (first iteration, no previous estimate) |
+| $\lvert \epsilon_a \rvert$ | N/A (first iteration, no previous estimate) |
 
 #### Iteration 2
 
@@ -344,7 +344,7 @@ $$f(0) \cdot f(0.11) < 0 \quad ✅$$
 
 #### Full Iteration Table (10 Iterations)
 
-| Iter | $x_l$ | $x_u$ | $x_m$ | $|\epsilon_a|$ (%) | $f(x_m)$ |
+| Iter | $x_l$ | $x_u$ | $x_m$ | $\lvert \epsilon_a \rvert$ (%) | $f(x_m)$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | 0.00000 | 0.11000 | 0.05500 | — | $+6.655 \times 10^{-5}$ |
 | 2 | 0.05500 | 0.11000 | 0.08250 | 33.33% | $-1.622 \times 10^{-4}$ |
@@ -481,7 +481,7 @@ Perform **at least 4 iterations**. For each iteration, show: $x_l$, $x_u$, $x_m$
 
 **Q9.** Given the iteration table below, fill in the **missing values**:
 
-| Iter | $x_l$ | $x_u$ | $x_m$ | $f(x_m)$ | $|\epsilon_a|$ (%) |
+| Iter | $x_l$ | $x_u$ | $x_m$ | $f(x_m)$ | $\lvert \epsilon_a \rvert$ (%) |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | 0 | 2 | 1.0 | $-0.5$ | — |
 | 2 | 1.0 | 2 | ? | ? | ? |
@@ -519,7 +519,7 @@ What method is most likely being used, and why? How many more iterations are nee
 | Q2 | The root is "bracketed" (trapped) between $x_l$ and $x_u$ — its guaranteed to be inside the interval. |
 | Q3 | Not guaranteed without continuity. If $f$ is continuous on $[2,7]$, then yes, a root is guaranteed. |
 | Q4 | $n \geq \log(800)/\log(2) \approx 9.6 \to n = 10$ iterations |
-| Q5 | $|\epsilon_a|$ uses consecutive approximations (no true answer needed). $\epsilon_t$ uses the true value (only for verification). |
+| Q5 | $\lvert \epsilon_a \rvert$ uses consecutive approximations (no true answer needed). $\epsilon_t$ uses the true value (only for verification). |
 | Q6 | FALSE. There could be an odd number of roots (1, 3, 5, ...). The sign change guarantees *at least one* root. |
 
 ---
@@ -530,8 +530,8 @@ What method is most likely being used, and why? How many more iterations are nee
 |---|---|
 | $x_m = \frac{x_l + x_u}{2}$ | Midpoint (root estimate) |
 | $f(x_l) \cdot f(x_u) < 0$ | Bracket validation |
-| $|\epsilon_a| = \left| \frac{x_m^{\text{new}} - x_m^{\text{old}}}{x_m^{\text{new}}} \right| \times 100\%$ | Approximate error |
-| $|\epsilon_a| \leq 0.5 \times 10^{2-m}\%$ | Scarborough's criterion ($m$ sig. digits) |
+| $\lvert \epsilon_a \rvert = \left\lvert \frac{x_m^{\text{new}} - x_m^{\text{old}}}{x_m^{\text{new}}} \right\rvert \times 100\%$ | Approximate error |
+| $\lvert \epsilon_a \rvert \leq 0.5 \times 10^{2-m}\%$ | Scarborough's criterion ($m$ sig. digits) |
 | $\text{Max error after } n \text{ steps} = \frac{x_u - x_l}{2^n}$ | Error bound |
 | $n \geq \frac{\log\left(\frac{x_u-x_l}{\epsilon}\right)}{\log 2}$ | Iterations needed for tolerance $\epsilon$ |
 
