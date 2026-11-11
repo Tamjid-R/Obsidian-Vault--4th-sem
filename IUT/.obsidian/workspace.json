@@ -77,7 +77,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -153,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Human/University/5th Sem/Server Programming/Server Programming Notes.md",
+                "file": "Human/University/5th Sem/Server Programming/Lecture-2.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -265,10 +265,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f59ebfc4009cbe03",
+  "active": "188478f477465332",
   "lastOpenFiles": [
-    "Human/University/5th Sem/Server Programming/Lecture-2.pdf",
     "Human/University/5th Sem/Server Programming/Server Programming Notes.md",
+    "Human/University/5th Sem/Server Programming/Lecture-2.pdf",
     "Human/University/5th Sem/Server Programming/Lecture-1.pdf",
     "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md",
     "Human/University/5th Sem/Server Programming/Unconfirmed 766188.crdownload",
