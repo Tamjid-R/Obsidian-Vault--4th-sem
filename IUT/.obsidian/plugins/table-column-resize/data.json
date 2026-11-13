@@ -85,7 +85,13 @@
     "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iteration (𝑖)|𝑥old|𝑥new$x^{\\text{new}}$||𝜖𝑎| =∣\n∣\n∣\n∣𝑥new−𝑥old𝑥new∣\n∣\n∣\n∣ ×100%|Tolerance 𝜖𝑠|Status (|𝜖𝑎| ≤𝜖𝑠)::2": 93,
     "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iteration (𝑖)|𝑥old|𝑥new$x^{\\text{new}}$||𝜖𝑎| =∣\n∣\n∣\n∣𝑥new−𝑥old𝑥new∣\n∣\n∣\n∣ ×100%|Tolerance 𝜖𝑠|Status (|𝜖𝑎| ≤𝜖𝑠)::3": 122,
     "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iteration (𝑖)|𝑥old|𝑥new$x^{\\text{new}}$||𝜖𝑎| =∣\n∣\n∣\n∣𝑥new−𝑥old𝑥new∣\n∣\n∣\n∣ ×100%|Tolerance 𝜖𝑠|Status (|𝜖𝑎| ≤𝜖𝑠)::4": 88,
-    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iteration (𝑖)|𝑥old|𝑥new$x^{\\text{new}}$||𝜖𝑎| =∣\n∣\n∣\n∣𝑥new−𝑥old𝑥new∣\n∣\n∣\n∣ ×100%|Tolerance 𝜖𝑠|Status (|𝜖𝑎| ≤𝜖𝑠)::5": 219
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iteration (𝑖)|𝑥old|𝑥new$x^{\\text{new}}$||𝜖𝑎| =∣\n∣\n∣\n∣𝑥new−𝑥old𝑥new∣\n∣\n∣\n∣ ×100%|Tolerance 𝜖𝑠|Status (|𝜖𝑎| ≤𝜖𝑠)::5": 219,
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iter|𝑥𝑙|𝑥𝑢|𝑥𝑚||𝜖𝑎| (%)|𝑓(𝑥𝑚)::0": 83,
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iter|𝑥𝑙|𝑥𝑢|𝑥𝑚||𝜖𝑎| (%)|𝑓(𝑥𝑚)::1": 117,
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iter|𝑥𝑙|𝑥𝑢|𝑥𝑚||𝜖𝑎| (%)|𝑓(𝑥𝑚)::2": 117,
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iter|𝑥𝑙|𝑥𝑢|𝑥𝑚||𝜖𝑎| (%)|𝑓(𝑥𝑚)::3": 117,
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iter|𝑥𝑙|𝑥𝑢|𝑥𝑚||𝜖𝑎| (%)|𝑓(𝑥𝑚)::4": 117,
+    "Human/University/5th Sem/Numerical Methods/Maths 4543 notes.md::Iter|𝑥𝑙|𝑥𝑢|𝑥𝑚||𝜖𝑎| (%)|𝑓(𝑥𝑚)::5": 117
   },
   "minColumnWidth": 50
 }
